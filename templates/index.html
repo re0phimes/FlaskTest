@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}IndexPageTest{% endblock %}
+{% block styles %}
+<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
+{{super()}}
+{% endblock %}
+{% block navibar %}
+	{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>恭喜你发现了一个神奇的地方</h1>
+		<p>这是一个用来显示电脑性能使用的的页面。</p>
+		<p><a class="btn btn-primary btn-lg" role="button">
+			还不知道干嘛用</a>
+		</p>
+	</div>
+</div>
+<div class="container">
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						{% for x in headers %}
+                            <th>{{x}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+ {% for i in range(content.count()[0]) %}
+                        <tr>
+                             {% for j in range(6) %}
+                                 <td>{{content.loc[i][j]}}</td>
+                             {% endfor %}
+                         <tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+	</div>
+<div class="container">
+<p>
+	{% for x in headers %}
+		{{"aaaaaaaaaaaaaaaa"}}
+	{% endfor %}
+</p>
+</div>
+{% endblock %}
