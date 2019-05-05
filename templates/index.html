@@ -21,6 +21,28 @@
 	</div>
 </div>
 <div class="container">
+		<form method="post">
+			{{ form.csrf_token }}
+			<div class="form-group">
+				{{ form.name.label }}
+				{{ form.name(class='form-control') }}
+				{% for message in form.name.errors %}
+					<small class="error">{{ message }}</small><br>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.st.label }}
+				{{ form.et(class='form-control') }}
+			</div>
+			<div class="form-group">
+				{{ form.et.label }}
+				{{ form.et(class='form-control') }}
+			</div>
+		{{ form.submit(class="btn btn-primary") }}
+		</form>
+</div>
+</br>
+<div class="container">
 			<table class="table table-striped ">
 				<thead>
 					<tr>

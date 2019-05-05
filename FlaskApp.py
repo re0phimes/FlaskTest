@@ -1,47 +1,37 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
 from flask_bootstrap import Bootstrap
 import pandas as pd
 from flask_nav import Nav
 from flask_nav.elements import *
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+from flask_sqlalchemy import SQLAlchemy
+
+
+class QueryForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(message='name cannot be empty')], render_kw={'placeholder':'Data'})
+    st = StringField('StartTime', render_kw={'placeholder':'StartTime'})
+    et = StringField('EndTime', render_kw={'placeholder':'EndTime'})
+    submit = SubmitField('Go')
 
 app = Flask(__name__)
 app.jinja_env.auto_reload = True
 app.config['TESTING'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.secret_key = 'test secret key'
 Bootstrap(app)
+db = SQLAlchemy(app)
 
 
-# nav = Nav()
-# nav.register_element('top',
-#                      Navbar(u'测试部',View(u'主页','Home'),
-#                             View(u'测试','Test'),
-#                             Subgroup(u'项目',
-#                                      View(u'项目1','ProgramA'),
-#                                      Separator(),
-#                                      View(u'项目2','ProgramB')
-#                             )),
-#                      )#设置nav内容
-# nav.init_app(app) #初始化nav实例
 
 
-@app.route('/')
+@app.route('/',methods=('GET','POST'))
 def index():
-    return render_template("index.html", headers=headers, count=count, content=content)
-
-
-@app.context_processor
-def override_url_for():
-    return dict(url_for=dated_url_for)
-
-def dated_url_for(endpoint, **values):
-    if endpoint == 'static':
-        filename = values.get('filename', None)
-        if filename:
-            file_path = os.path.join(app.root_path,
-                                     endpoint, filename)
-            values['q'] = int(os.stat(file_path).st_mtime)
-    return url_for(endpoint, **values)
-
+    form = QueryForm()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template("index.html", headers=headers, count=count, content=content, form=form)
 
 
 content = pd.read_csv("static/aaa.csv", index_col=0)
