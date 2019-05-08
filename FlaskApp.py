@@ -3,17 +3,9 @@ from flask_bootstrap import Bootstrap
 import pandas as pd
 from flask_nav import Nav
 from flask_nav.elements import *
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+from forms import QueryForm
 from flask_sqlalchemy import SQLAlchemy
 
-
-class QueryForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(message='name cannot be empty')], render_kw={'placeholder':'Data'})
-    st = StringField('StartTime', render_kw={'placeholder':'StartTime'})
-    et = StringField('EndTime', render_kw={'placeholder':'EndTime'})
-    submit = SubmitField('Go')
 
 app = Flask(__name__)
 app.jinja_env.auto_reload = True
@@ -21,7 +13,7 @@ app.config['TESTING'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = 'test secret key'
 Bootstrap(app)
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
 
 
