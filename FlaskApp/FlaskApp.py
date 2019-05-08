@@ -1,11 +1,8 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, redirect
 from flask_bootstrap import Bootstrap
 import pandas as pd
-from flask_nav import Nav
 from flask_nav.elements import *
-from forms import QueryForm
-from flask_sqlalchemy import SQLAlchemy
-
+from FlaskApp.forms import QueryForm
 
 app = Flask(__name__)
 app.jinja_env.auto_reload = True
