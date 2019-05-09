@@ -2,7 +2,9 @@ from flask import Flask, render_template, redirect
 from flask_bootstrap import Bootstrap
 import pandas as pd
 from flask_nav.elements import *
-from FlaskApp.forms import QueryForm
+from forms import QueryForm
+
+
 
 app = Flask(__name__)
 app.jinja_env.auto_reload = True
@@ -23,7 +25,7 @@ def index():
     return render_template("index.html", headers=headers, count=count, content=content, form=form)
 
 
-content = pd.read_csv("static/aaa.csv", index_col=0)
+content = pd.read_csv("FlaskApp/static/aaa.csv", index_col=0)
 headers = content.columns
 for header in headers:
     print(header)
