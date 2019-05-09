@@ -1,0 +1,22 @@
+from flask import Flask, render_template, redirect
+from FlaskApp.extensions import bootstrp, db
+from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+
+
+app = Flask(__name__)
+app.jinja_env.auto_reload = True
+app.config['TESTING'] = True
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'test secret key'
+Bootstrap(app)
+db.init_app(app)
+
+
+from FlaskApp.blueprints.memoviews import memoview_bp
+app.register_blueprint(memoview_bp, url_prefix='')
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
