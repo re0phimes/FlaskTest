@@ -24,25 +24,27 @@
 	<div class="row clearfix">
 		<div class="col-md-6 column">
 			<h2>查询时间范围</h2>
-			<form method="post">
-				{{ form.csrf_token }}
-				<div class="form-group">
-					{{ form.name.label }}
-					{{ form.name(class='form-control') }}
-					{% for message in form.name.errors %}
-						<small class="error">{{ message }}</small><br>
-					{% endfor %}
-				</div>
-				<div class="form-group">
-					{{ form.st.label }}
-					{{ form.st(class='form-control') }}
-				</div>
-				<div class="form-group">
-					{{ form.et.label }}
-					{{ form.et(class='form-control') }}
-				</div>
-			{{ form.submit(class="btn btn-primary") }}
-			</form>
+			{% import "bootstrap/wtf.html" as wtf %}
+			{{ wtf.quick_form(form) }}
+				<!--<form method="post">-->
+					<!--{{ form.csrf_token }}-->
+					<!--<div class="form-group">-->
+						<!--{{ form.name.label }}-->
+						<!--{{ form.name(class='form-control') }}-->
+						<!--{% for message in form.name.errors %}-->
+							<!--<small class="error">{{ message }}</small><br>-->
+						<!--{% endfor %}-->
+					<!--</div>-->
+					<!--<div class="form-group">-->
+						<!--{{ form.st.label }}-->
+						<!--{{ form.st(class='form-control') }}-->
+					<!--</div>-->
+					<!--<div class="form-group">-->
+						<!--{{ form.et.label }}-->
+						<!--{{ form.et(class='form-control') }}-->
+					<!--</div>-->
+				<!--{{ form.submit(class="btn btn-primary") }}-->
+				<!--</form>-->
 		</div>
 		<div class="col-md-6 column">
 			<h2>连接数据库</h2>
