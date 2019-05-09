@@ -13,33 +13,64 @@
 
 <div class="jumbotron">
 	<div class="container">
-		<h1>恭喜你发现了一个神奇的地方</h1>
-		<p>这是一个用来显示电脑性能使用的的页面。</p>
+		<h1>九思易测试部测试性能用页面V0.1</h1>
+		<p>该网页用于读取数据库内存数据后，对内存、InRun、InStudio等数据进行展示</p>
 		<p><a class="btn btn-primary btn-lg" role="button">
 			还不知道干嘛用</a>
 		</p>
 	</div>
 </div>
 <div class="container">
-		<form method="post">
-			{{ form.csrf_token }}
-			<div class="form-group">
-				{{ form.name.label }}
-				{{ form.name(class='form-control') }}
-				{% for message in form.name.errors %}
-					<small class="error">{{ message }}</small><br>
-				{% endfor %}
-			</div>
-			<div class="form-group">
-				{{ form.st.label }}
-				{{ form.et(class='form-control') }}
-			</div>
-			<div class="form-group">
-				{{ form.et.label }}
-				{{ form.et(class='form-control') }}
-			</div>
-		{{ form.submit(class="btn btn-primary") }}
-		</form>
+	<div class="row clearfix">
+		<div class="col-md-6 column">
+			<h2>查询时间范围</h2>
+			<form method="post">
+				{{ form.csrf_token }}
+				<div class="form-group">
+					{{ form.name.label }}
+					{{ form.name(class='form-control') }}
+					{% for message in form.name.errors %}
+						<small class="error">{{ message }}</small><br>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ form.st.label }}
+					{{ form.st(class='form-control') }}
+				</div>
+				<div class="form-group">
+					{{ form.et.label }}
+					{{ form.et(class='form-control') }}
+				</div>
+			{{ form.submit(class="btn btn-primary") }}
+			</form>
+		</div>
+		<div class="col-md-6 column">
+			<h2>连接数据库</h2>
+			<form method="post">
+				{{ dbform.csrf_token }}
+				<div class="form-group">
+					{{ dbform.DBType.label }}
+					{{ dbform.DBType(class='form-control') }}
+					{% for message in dbform.DBType.errors %}
+						<small class="error">{{ message }}</small><br>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ dbform.username.label }}
+					{{ dbform.username(class='form-control') }}
+				</div>
+				<div class="form-group">
+					{{ dbform.password.label }}
+					{{ dbform.password(class='form-control') }}
+				</div>
+				<div class="form-group">
+					{{ dbform.host.label }}
+					{{ dbform.host(class='form-control') }}
+				</div>
+			{{ dbform.submit(class="btn btn-primary") }}
+			</form>
+		</div>
+	</div>
 </div>
 </br>
 <div class="container">
