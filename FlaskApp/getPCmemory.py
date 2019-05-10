@@ -9,7 +9,7 @@ engine = create_engine('mysql+mysqlconnector://root:123456@localhost:3306/test')
 tempSeriesList = []
 finalDFList = []
 finalDF = pd.DataFrame(data=None,columns=["timeStamp","total","avai","percent","used","free"])
-print(finalDF)
+# print(finalDF)
 count = 0
 
 cpudic = {}
@@ -53,12 +53,12 @@ def record_memo():
 #             print(tempDF)
             tempSeriesList = []
             finalDFList.append(tempDF)
-            print(finalDFList)
+            # print(finalDFList)
             count += 1
         time.sleep(1)
         if count == 2: #每次DFList添加了新的数据后，count就会加1，也就是说每5秒count加1.当这里count为10时，则会向最终输出的DF进行合并。
             finalDF = finalDF.append(finalDFList,ignore_index=True)
-            print(finalDF)
+            # print(finalDF)
             finalDFList = []
             finalDF.to_sql('testDF',engine)
             # finalDF.to_csv("aaa.csv")

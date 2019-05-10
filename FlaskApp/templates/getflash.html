@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}IndexPageTest{% endblock %}
+{% block styles %}
+<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
+{{super()}}
+{% endblock %}
+{% block navibar %}
+	{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>九思易测试部测试性能用页面V0.1</h1>
+		<p>该网页用于读取数据库内存数据后，对内存、InRun、InStudio等数据进行展示</p>
+		<p><a class="btn btn-primary btn-lg" role="button">
+			还不知道干嘛用</a>
+		</p>
+	</div>
+</div>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+</br>
+<div class="container">
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						{% for x in headers %}
+                            <th>{{x}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+ {% for i in range(content.count()[0]) %}
+                        <tr>
+                             {% for j in range(6) %}
+                                 <td>{{content.loc[i][j]}}</td>
+                             {% endfor %}
+                         <tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+	</div>
+<div class="container">
+</div>
+{% endblock %}
+
+
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
