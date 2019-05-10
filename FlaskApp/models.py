@@ -1,5 +1,5 @@
 from datetime import datetime
-from FlaskApp.extensions import db
+from extensions import db
 
 
 class PC_memory(db.Model):

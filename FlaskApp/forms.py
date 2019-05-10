@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 
@@ -12,7 +12,7 @@ class QueryForm(FlaskForm):
 
 
 class DBForm(FlaskForm):
-        DBType = StringField('DBType', validators=[DataRequired(message='DBType cannot be empty')], render_kw={'placeholder':'mysql'})
+        DBType = SelectField(u'DataBaseType', choices=[('mysql','MySql'),('sqlserver','SqlServer'),('posgresql','PosgreSQL')])
         username = StringField('username', validators=[DataRequired(message='username cannot be empty')],
                              render_kw={'placeholder': 'root'})
         password = StringField('password', validators=[DataRequired(message='password cannot be empty')],
