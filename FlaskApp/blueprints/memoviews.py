@@ -19,8 +19,9 @@ def index():
         # form = QueryForm()
         # dbform = DBForm()
         DBType = request.form.get('DBType',type=str,default=None)
+        timedata = request.form.get('st',type=str,default=None)
         #判断数据库类型#
-        return str(DBType)
+        return str(DBType) + " " + str(timedata)
     else:
         pc_memo_data = PC_memory.query.order_by(PC_memory.timestamp.desc())
         form = QueryForm()
