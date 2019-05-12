@@ -16,7 +16,7 @@ app.config['TESTING'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','mysql://username:password@host/databasename')
+app.config['SQLALCHEMY_DATABASE_URI'] = ''
 app.secret_key = 'test secret key'
 
 

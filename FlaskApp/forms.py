@@ -15,9 +15,10 @@ class QueryForm(FlaskForm):
 class DBForm(FlaskForm):
         DBType = SelectField('DataBaseType', choices=[('mysql','MySql'),('sqlserver','SqlServer'),('posgresql','PosgreSQL')])
         username = StringField('username', validators=[DataRequired(message='username cannot be empty')],
-                             render_kw={'placeholder': 'root'})
+                             render_kw={'placeholder': 'root'}, default='root')
         password = PasswordField('password', validators=[DataRequired(message='password cannot be empty')],
-                             render_kw={'placeholder': 'enter your password here'})
+                             render_kw={'placeholder': 'enter your password here'}, default='123456')
         host = StringField('host/IP address', validators=[DataRequired(message='host cannot be empty')],
-                             render_kw={'placeholder': 'localhost'})
+                             render_kw={'placeholder': 'localhost'},default='localhost')
+        DBname = StringField('DBname', render_kw={'placeholder':'Test'},default='Test')
         submit = SubmitField("connect")

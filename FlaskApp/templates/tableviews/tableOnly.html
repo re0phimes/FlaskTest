@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}IndexPageTest{% endblock %}
+{% block styles %}
+<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
+{{super()}}
+{% endblock %}
+{% block navibar %}
+	{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-6 column">
+			<h2>查询时间范围</h2>
+			{% import "bootstrap/wtf.html" as wtf %}
+			{{ wtf.quick_form(form) }}
+		</div>
+		<div class="col-md-6 column">
+			<h2>连接数据库</h2>
+            {{ wtf.quick_form(dbform) }}
+		</div>
+	</div>
+</div>
+</br>
+<div class="container">
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						{% for x in headers %}
+                            <th>{{x}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+ {% for i in range(content.count()[0]) %}
+                        <tr>
+                             {% for j in range(6) %}
+                                 <td>{{content.loc[i][j]}}</td>
+                             {% endfor %}
+                         <tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+	</div>
+<div class="container">
+</div>
+{% endblock %}
+
