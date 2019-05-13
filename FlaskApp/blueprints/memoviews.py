@@ -4,6 +4,7 @@ import pandas as pd
 from models import PC_memory
 import os
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 
 memoview_bp = Blueprint('memo',__name__)
 
@@ -30,8 +31,11 @@ def index():
         app = Flask(__name__)
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','%s://%s:%s@%s/%s' %(DBType,username,password,host,DBname))
         ######################
+        DB_URI = "mysql+mysqlconnector://{user}:{password}@{host}:{port}/{db}"
+        eng = create_engine(DB_URI.format(user=username,password=password,host=host,port=3306,db=DBname))
+        con = eng.connect()
         #判断数据库类型#
-        return app.config['SQLALCHEMY_DATABASE_URI']
+        return (str(con)+"aaaa")
     else:
         # pc_memo_data = PC_memory.query.order_by(PC_memory.timestamp.desc())
         form = QueryForm()

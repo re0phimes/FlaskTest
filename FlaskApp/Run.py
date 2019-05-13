@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from extensions import bootstrp, db
 from flask_bootstrap import Bootstrap
+from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 import os
 
