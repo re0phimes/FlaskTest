@@ -6,6 +6,6 @@ from models import PC_memory
 postdata_bp = Blueprint('memo', __name__)
 
 
-@postdata_bp.route("/postdata/", method=['GET','POST']):
+@postdata_bp.route("/queryData/", method=['GET','POST']):
 def showdata():
-    return render_template('getflash.html')
+    return render_template('tablevies/tableOnly.html')

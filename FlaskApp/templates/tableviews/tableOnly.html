@@ -9,37 +9,26 @@
 {% endblock %}
 
 {% block page_content %}
-
-
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-6 column">
-			<h2>查询时间范围</h2>
-			{% import "bootstrap/wtf.html" as wtf %}
-			{{ wtf.quick_form(form) }}
-		</div>
-		<div class="col-md-6 column">
-			<h2>连接数据库</h2>
-            {{ wtf.quick_form(dbform) }}
-		</div>
-	</div>
-</div>
+</br>
+</br>
+</br>
+</br>
+</br>
 </br>
 <div class="container">
 			<table class="table table-striped ">
-				<thead>
-					<tr>
-						{% for x in headers %}
-                            <th>{{x}}</th>
-						{% endfor %}
-					</tr>
-				</thead>
+<!--				<thead>-->
+<!--					<tr>-->
+<!--						{% for x in a %}-->
+<!--                            <th>{{x}}</th>-->
+<!--						{% endfor %}-->
+<!--					</tr>-->
+<!--				</thead>-->
 				<tbody>
- {% for i in range(a) %}
+ {% for line in a %}
                         <tr>
-                             {% for j in range(6) %}
-                                 <td>{{content.loc[i][j]}}</td>
-                             {% endfor %}
+                                 <td>{{line.id}}</td>
+								 <td>{{line.name}}</td>
                          <tr>
                     {% endfor %}
 				</tbody>
