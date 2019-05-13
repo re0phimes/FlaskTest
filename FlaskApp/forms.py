@@ -20,5 +20,7 @@ class DBForm(FlaskForm):
                              render_kw={'placeholder': 'enter your password here'}, default='123456')
         host = StringField('host/IP address', validators=[DataRequired(message='host cannot be empty')],
                              render_kw={'placeholder': 'localhost'},default='localhost')
+        port = StringField('PORT', validators=[DataRequired(message='port cannot be empty')],
+                             render_kw={'placeholder': '3306'},default='3306')
         DBname = StringField('DBname', render_kw={'placeholder':'Test'},default='test')
         submit = SubmitField("connect")
