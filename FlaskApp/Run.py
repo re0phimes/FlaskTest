@@ -21,9 +21,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = ''
 app.secret_key = 'test secret key'
 
 
-
+from blueprints.postDataView import postdata_bp
 from blueprints.memoviews import memoview_bp
+
 app.register_blueprint(memoview_bp)
+app.register_blueprint(postdata_bp, url_prefix='/tableviews/')
 
 
 if __name__ == "__main__":

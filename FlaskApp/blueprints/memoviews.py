@@ -1,12 +1,14 @@
-from flask import Blueprint,render_template, request, flash, get_flashed_messages, Flask
+from flask import Blueprint,render_template, request, flash, get_flashed_messages, Flask, redirect
 from forms import QueryForm,DBForm
 import pandas as pd
+from sqlalchemy import create_engine, Column, Integer, String, DateTime
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from flask import g
 from models import PC_memory
 import os
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+
 
 
 content = pd.read_csv("static/aaa.csv", index_col=0)
@@ -27,6 +29,7 @@ def index():
         password = request.form.get('password', type=str, default=None)
         host = request.form.get('host', type=str, default=None)
         DBname = request.form.get('DBname', type=str, default=None)
+        Table = request.form.get('Table', type=str, default=None)
         #########
 #         app = Flask(__name__)
 #         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','%s://%s:%s@%s/%s' %(DBType,username,password,host,DBname))
@@ -38,19 +41,29 @@ def index():
             __tablename__ = 'User'
             id = Column(Integer, primary_key=True)
             name = Column(String(32))
-        
+
+
+        class Memory(Base):
+            __tablename__ = 'memory'
+            id = Column(Integer, primary_key=True)
+            timestamp = Column(DateTime)
+            used = Column(String(32))
+            free = Column(String(32))
+
         DB_URI = "mysql+mysqlconnector://{user}:{password}@{host}:{port}/{db}"
+        g.DB_URI = DB_URI.format(user=username,password=password,host=host,port=3306,db=DBname)
         eng = create_engine(DB_URI.format(user=username,password=password,host=host,port=3306,db=DBname))
 
         Session = sessionmaker(bind=eng)
         session = Session()
-        a = session.query(User).all()
-        #判断数据库类型#
-        print(type(a))
-        for lines in a:
-            print(lines)
-            print(type(lines))
-        return render_template("tableviews/tableOnly.html", a=a)
+        if Table == 'memory':
+            a = session.query(Memory).all()
+            # return render_template("tableviews/tableOnlymemory.html", a=a)
+            return redirect('/tableviews/queryData/')
+        else:
+            a = session.query(User).all()
+            return render_template("tableviews/tableOnly.html", a=a)
+
     else:
         # pc_memo_data = PC_memory.query.order_by(PC_memory.timestamp.desc())
         form = QueryForm()

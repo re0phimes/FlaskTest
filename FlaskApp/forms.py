@@ -23,4 +23,5 @@ class DBForm(FlaskForm):
         port = StringField('PORT', validators=[DataRequired(message='port cannot be empty')],
                              render_kw={'placeholder': '3306'},default='3306')
         DBname = StringField('DBname', render_kw={'placeholder':'Test'},default='test')
+        Table = StringField('Table', render_kw={'placeholder':'memory'},default='memory')
         submit = SubmitField("connect")

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}IndexPageTest{% endblock %}
+{% block styles %}
+<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
+{{super()}}
+{% endblock %}
+{% block navibar %}
+	{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<div class="container">
+			<table class="table table-striped ">
+<!--				<thead>-->
+<!--					<tr>-->
+<!--						{% for x in a %}-->
+<!--                            <th>{{x}}</th>-->
+<!--						{% endfor %}-->
+<!--					</tr>-->
+<!--				</thead>-->
+				<tbody>
+ 					{% for line in a %}
+                        <tr>
+                                 <td>{{line.id}}</td>
+								 <td>{{line.timestamp}}</td>
+ 								 <td>{{line.used}}</td>
+								 <td>{{line.free}}</td>
+                         <tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+	</div>
+<div class="container">
+</div>
+{% endblock %}
+
