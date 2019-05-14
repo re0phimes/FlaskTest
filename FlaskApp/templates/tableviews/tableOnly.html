@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
 {% block title %}IndexPageTest{% endblock %}
 {% block styles %}
 <link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
@@ -25,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody>
- {% for line in a %}
+ {% for line in queryItems %}
                         <tr>
                             {% for i in columnNameList %}
                             <td>{{line[i|string()]}}</td>
@@ -37,5 +38,13 @@
 	</div>
 <div class="container">
 </div>
+
+<div class="page-footer">{{ render_pagination(taskpagenation) }} </div>
+
+
+
+
+
+
 {% endblock %}
 

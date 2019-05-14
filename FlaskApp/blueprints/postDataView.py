@@ -1,7 +1,9 @@
-from flask import Blueprint,render_template, request, flash,g
+from flask import Blueprint,render_template, request, flash, current_app
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import os
+from models import ceshi
 
 
 
@@ -11,30 +13,23 @@ postdata_bp = Blueprint('tableviews',__name__)
 @postdata_bp.route("/queryData/", methods=['POST','GET'])
 def queryData():
 
-    eng = create_engine(g.DB_URI)
-
-    Base = declarative_base()
-
-    class User(Base):
-        __tablename__ = 'User'
-        id = Column(Integer, primary_key=True)
-        name = Column(String(32))
-
-    class Memory(Base):
-        __tablename__ = 'memory'
-        id = Column(Integer, primary_key=True)
-        timestamp = Column(DateTime)
-        used = Column(String(32))
-        free = Column(String(32))
-    #
-    #
-    #
-    Session = sessionmaker(bind=eng)
-    session = Session()
-    # if Table == 'memory':
-    a = session.query(Memory).all()
-    #     return render_template("tableviewstableOnlymemory.html", a=a)
-    # else:
-    #     a = session.query(User).all()
-    #     return render_template("tableviews/tableOnly.html", a=a)
-    return render_template("tableviews/tableOnlymemory.html,a=a")
+#         DBType = request.form.get('DBType',type=str,default=None)
+#         username = request.form.get('username', type=str, default=None)
+#         password = request.form.get('password', type=str, default=None)
+#         host = request.form.get('host', type=str, default=None)
+#         DBname = request.form.get('DBname', type=str, default=None)
+#         Table = request.form.get('Table', type=str, default=None)
+        #########
+#         current_app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','{DBType}+pymysql://{username}:{password}@{host}/{DBname}'.format(DBType=DBType,username=username,password=password,host=host,DBname=DBname))
+        ##############
+#         tableName = eval(Table)
+        a = ceshi.query.all()
+        
+        page=request.args.get('page',1,type=int)
+        taskpagenation = ceshi.query.order_by(ceshi.ID.desc()).paginate(page,per_page=4,error_out=False)
+        queryItems = taskpagenation.items
+        print(queryItems)
+        for line in a:
+            keyDict = line.__dict__.keys()
+            columnNameList = list(keyDict)[1:]
+        return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList,queryItems=queryItems,taskpagenation=taskpagenation)
