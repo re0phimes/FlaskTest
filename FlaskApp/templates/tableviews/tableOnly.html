@@ -17,18 +17,19 @@
 </br>
 <div class="container">
 			<table class="table table-striped ">
-<!--				<thead>-->
-<!--					<tr>-->
-<!--						{% for x in a %}-->
-<!--                            <th>{{x}}</th>-->
-<!--						{% endfor %}-->
-<!--					</tr>-->
-<!--				</thead>-->
+				<thead>
+					<tr>
+						{% for i in columnNameList %}
+                            <th>{{i|string()}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
 				<tbody>
  {% for line in a %}
                         <tr>
-                             <td>{{line.id}}</td>
-                             <td>{{line.name}}</td>
+                            {% for i in columnNameList %}
+                            <td>{{line[i|string()]}}</td>
+                            {% endfor %}
                          <tr>
                     {% endfor %}
 				</tbody>
