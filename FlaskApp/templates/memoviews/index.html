@@ -76,27 +76,27 @@
 	</div>
 </div>
 </br>
-<div class="container">
-			<table class="table table-striped ">
-				<thead>
-					<tr>
-						{% for x in headers %}
-                            <th>{{x}}</th>
-						{% endfor %}
-					</tr>
-				</thead>
-				<tbody>
- {% for i in range(content.count()[0]) %}
-                        <tr>
-                             {% for j in range(6) %}
-                                 <td>{{content.loc[i][j]}}</td>
-                             {% endfor %}
-                         <tr>
-                    {% endfor %}
-				</tbody>
-			</table>
-	</div>
-<div class="container">
-</div>
+<!--<div class="container">-->
+<!--			<table class="table table-striped ">-->
+<!--				<thead>-->
+<!--					<tr>-->
+<!--						{% for x in headers %}-->
+<!--                            <th>{{x}}</th>-->
+<!--						{% endfor %}-->
+<!--					</tr>-->
+<!--				</thead>-->
+<!--				<tbody>-->
+<!-- {% for i in range(content.count()[0]) %}-->
+<!--                        <tr>-->
+<!--                             {% for j in range(6) %}-->
+<!--                                 <td>{{content.loc[i][j]}}</td>-->
+<!--                             {% endfor %}-->
+<!--                         <tr>-->
+<!--                    {% endfor %}-->
+<!--				</tbody>-->
+<!--			</table>-->
+<!--	</div>-->
+<!--<div class="container">-->
+<!--</div>-->
 {% endblock %}
 
