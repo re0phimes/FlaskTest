@@ -22,11 +22,12 @@ def index():
         DBType = request.form.get('DBType',type=str,default=None)
         username = request.form.get('username', type=str, default=None)
         password = request.form.get('password', type=str, default=None)
-        host = request.form.get('host', type=str, default=None)
+        host = request.form.get('host', type=str, default='localhost')
         DBname = request.form.get('DBname', type=str, default=None)
         Table = request.form.get('Table', type=str, default=None)
         #########
-        current_app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','{DBType}+pymysql://{username}:{password}@{host}/{DBname}'.format(DBType=DBType,username=username,password=password,host=host,DBname=DBname))
+#         current_app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','{DBType}+mysqlconnector://{username}:{password}@{host}/{DBname}'.format(DBType=DBType,username=username,password=password,host=host,DBname=DBname))
+        current_app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','{DBType}+mysqlconnector://{username}:{password}@{host}/{DBname}'.format(DBType=DBType,username=username,password=password,host=host,DBname=DBname))
 #         ##############
 #         tableName = eval(Table)
 #         a = tableName.query.all()
