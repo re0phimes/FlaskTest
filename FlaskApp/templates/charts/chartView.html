@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+{% block title %}IndexPageTest{% endblock %}
+{% block styles %}
+<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
+{{super()}}
+{% endblock %}
+{% block navibar %}
+	{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<div class="container">
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						{% for i in columnNameList %}
+                            <th>{{i|string()}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+ {% for line in queryItems %}
+                        <tr>
+                            {% for i in columnNameList %}
+                            <td>{{line[i|string()]}}</td>
+                            {% endfor %}
+                         <tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+	</div>
+<div class="container">
+</div>
+
+<div class="page-footer">{{ render_pagination(taskpagenation) }} </div>
+
+
+
+
+
+
+{% endblock %}
+
