@@ -4,14 +4,11 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from jinja2 import Markup
 import os
-<<<<<<< HEAD
 from models import ceshi
 from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
-=======
-from models import ceshi, memory
->>>>>>> 648390376bb7530a892680933d51b1310ce80b55
+from models import ceshi, memory, PCmemory
 
 
 
@@ -31,11 +28,10 @@ def queryData():
 #         current_app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','{DBType}+pymysql://{username}:{password}@{host}/{DBname}'.format(DBType=DBType,username=username,password=password,host=host,DBname=DBname))
         ##############
 #         tableName = eval(Table)
-<<<<<<< HEAD
-        a = ceshi.query.all()
+        a = PCmemory.query.all()
         
         page=request.args.get('page',1,type=int)
-        taskpagenation = ceshi.query.order_by(ceshi.ID.desc()).paginate(page,per_page=4,error_out=False)
+        taskpagenation = PCmemory.query.order_by(PCmemory.index.desc()).paginate(page,per_page=4,error_out=False)
         queryItems = taskpagenation.items
         print(queryItems)
         for line in a:
@@ -46,10 +42,10 @@ def queryData():
     
 @postdata_bp.route("/charts/", methods=['POST','GET'])
 def visulizeData():
-    a = ceshi.query.all()
+    a = PCmemory.query.all()
     columnNameList = []
     page=request.args.get('page',1,type=int)
-    taskpagenation = ceshi.query.order_by(ceshi.ID.desc()).paginate(page,per_page=4,error_out=False)
+    taskpagenation = PCmemory.query.order_by(PCmemory.index.desc()).paginate(page,per_page=10,error_out=False)
     queryItems = taskpagenation.items
     v1 = []
     v2 = []
@@ -57,10 +53,11 @@ def visulizeData():
     for line in a:
             keyDict = line.__dict__.keys()
             columnNameList = list(keyDict)[1:]
-            v1.append(line.aaaa)
-            v2.append(line.bbbb)
-            xaxis.append(line.ID)
-    print(type(queryItems[0]))
+            v1.append(line.avai)
+            v2.append(line.percent)
+            print(v1)
+            print(v2)
+            xaxis.append(line.timeStamp)
     c = (
         Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "500px",height= "300px"))
         .add_xaxis(xaxis)
@@ -77,29 +74,30 @@ def visulizeData():
 #         c.add_yaxis(str(queryItems[i]),queryItems[i])
 # 
     return render_template("tableviews/charts.html",c=c.render_embed(),linechart=linechart.render_embed())
-=======
-        if Table != None:
-            a = ceshi.query.all()
 
-            page=request.args.get('page',1,type=int)
-            taskpagenation = ceshi.query.order_by(ceshi.ID.desc()).paginate(page,per_page=4,error_out=False)
-            queryItems = taskpagenation.items
-            print(queryItems)
-            for line in a:
-                keyDict = line.__dict__.keys()
-                columnNameList = list(keyDict)[1:]
-            return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList,queryItems=queryItems,taskpagenation=taskpagenation)
-        else:
-            tableName = eval('memory')
-            a = tableName.query.all()
 
-            page = request.args.get('page', 1, type=int)
-            taskpagenation = tableName.query.order_by(tableName.id.asc()).paginate(page, per_page=4, error_out=False)
-            queryItems = taskpagenation.items
-            print(queryItems)
-            for line in a:
-                keyDict = line.__dict__.keys()
-                columnNameList = list(keyDict)[1:]
-            return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList, queryItems=queryItems,
-                                   taskpagenation=taskpagenation)
->>>>>>> 648390376bb7530a892680933d51b1310ce80b55
+
+# if Table != None:
+#     a = ceshi.query.all()
+#
+#     page=request.args.get('page',1,type=int)
+#     taskpagenation = ceshi.query.order_by(ceshi.ID.desc()).paginate(page,per_page=4,error_out=False)
+#     queryItems = taskpagenation.items
+#     print(queryItems)
+#     for line in a:
+#         keyDict = line.__dict__.keys()
+#         columnNameList = list(keyDict)[1:]
+#     return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList,queryItems=queryItems,taskpagenation=taskpagenation)
+# else:
+#     tableName = eval('memory')
+#     a = tableName.query.all()
+#
+#     page = request.args.get('page', 1, type=int)
+#     taskpagenation = tableName.query.order_by(tableName.id.asc()).paginate(page, per_page=4, error_out=False)
+#     queryItems = taskpagenation.items
+#     print(queryItems)
+#     for line in a:
+#         keyDict = line.__dict__.keys()
+#         columnNameList = list(keyDict)[1:]
+#     return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList, queryItems=queryItems,
+#                            taskpagenation=taskpagenation)

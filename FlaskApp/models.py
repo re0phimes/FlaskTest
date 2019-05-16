@@ -35,3 +35,23 @@ class ceshi(db.Model):
         self.aaaa = aaaa
         self.bbbb = bbbb
         self.ID = ID
+
+class PCmemory(db.Model):
+    __tablename__ = 'aaaaa'
+    index = db.Column(db.Integer, primary_key=True)
+    timeStamp = db.Column(db.DateTime,primary_key=True)
+    total = db.Column(db.Integer)
+    avai = db.Column(db.String(32))
+    percent = db.Column(db.String(32))
+    used = db.Column(db.Integer)
+    free = db.Column(db.Integer)
+
+    def __init__(self, index, timeStamp, total, avai, percent, used, free):
+        self.index = index
+        self.timeStamp = timeStamp
+        self.total = total
+        self.avai = avai
+        self.percent = percent
+        self.used = used
+        self.free = free
+
