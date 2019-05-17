@@ -21,104 +21,17 @@
 	</div>
 </div>
 <div class="container">
-	<div class="row clearfix">
+	<div class="row">
 		<div class="col-md-6 column">
 			<h2>查询时间范围</h2>
 			{% import "bootstrap/wtf.html" as wtf %}
 			{{ wtf.quick_form(form) }}
-				<!--<form method="post">-->
-					<!--{{ form.csrf_token }}-->
-					<!--<div class="form-group">-->
-						<!--{{ form.name.label }}-->
-						<!--{{ form.name(class='form-control') }}-->
-						<!--{% for message in form.name.errors %}-->
-							<!--<small class="error">{{ message }}</small><br>-->
-						<!--{% endfor %}-->
-					<!--</div>-->
-					<!--<div class="form-group">-->
-						<!--{{ form.st.label }}-->
-						<!--{{ form.st(class='form-control') }}-->
-					<!--</div>-->
-					<!--<div class="form-group">-->
-						<!--{{ form.et.label }}-->
-						<!--{{ form.et(class='form-control') }}-->
-					<!--</div>-->
-				<!--{{ form.submit(class="btn btn-primary") }}-->
-				<!--</form>-->
 		</div>
 		<div class="col-md-6 column">
 			<h2>连接数据库</h2>
             {{ wtf.quick_form(dbform) }}
-<!-- 			<form method="post">
-				{{ dbform.csrf_token }}
-				<div class="form-group">
-					{{ dbform.DBType.label }}
-					{{ dbform.DBType(class='form-control') }}
-					{% for message in dbform.DBType.errors %}
-						<small class="error">{{ message }}</small><br>
-					{% endfor %}
-				</div>
-				<div class="form-group">
-					{{ dbform.username.label }}
-					{{ dbform.username(class='form-control') }}
-				</div>
-				<div class="form-group">
-					{{ dbform.password.label }}
-					{{ dbform.password(class='form-control') }}
-				</div>
-				<div class="form-group">
-					{{ dbform.host.label }}
-					{{ dbform.host(class='form-control') }}
-				</div>
-			{{ dbform.submit(class="btn btn-primary") }}
-			</form> -->
 		</div>
 	</div>
 </div>
-
-<!-- <div class="container">
-			<table class="table table-striped ">
-				<thead>
-					<tr>
-						{% for x in headers %}
-                            <th>{{x}}</th>
-						{% endfor %}
-					</tr>
-				</thead>
-				<tbody>
- {% for i in range(content.count()[0]) %}
-                        <tr>
-                             {% for j in range(6) %}
-                                 <td>{{content.loc[i][j]}}</td>
-                             {% endfor %}
-                         <tr>
-                    {% endfor %}
-				</tbody>
-			</table>
-	</div>
-<div class="container"> -->
-
-<!--<div class="container">-->
-<!--			<table class="table table-striped ">-->
-<!--				<thead>-->
-<!--					<tr>-->
-<!--						{% for x in headers %}-->
-<!--                            <th>{{x}}</th>-->
-<!--						{% endfor %}-->
-<!--					</tr>-->
-<!--				</thead>-->
-<!--				<tbody>-->
-<!-- {% for i in range(content.count()[0]) %}-->
-<!--                        <tr>-->
-<!--                             {% for j in range(6) %}-->
-<!--                                 <td>{{content.loc[i][j]}}</td>-->
-<!--                             {% endfor %}-->
-<!--                         <tr>-->
-<!--                    {% endfor %}-->
-<!--				</tbody>-->
-<!--			</table>-->
-<!--	</div>-->
-<!--<div class="container">-->
-<!--</div>-->
 {% endblock %}
 
