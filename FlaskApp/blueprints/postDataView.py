@@ -18,16 +18,6 @@ postdata_bp = Blueprint('tableviews',__name__)
 @postdata_bp.route("/queryData/", methods=['POST','GET'])
 def queryData():
 
-#         DBType = request.form.get('DBType',type=str,default=None)
-#         username = request.form.get('username', type=str, default=None)
-#         password = request.form.get('password', type=str, default=None)
-#         host = request.form.get('host', type=str, default=None)
-#         DBname = request.form.get('DBname', type=str, default=None)
-        Table = request.form.get('Table', type=str, default=None)
-        #########
-#         current_app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','{DBType}+pymysql://{username}:{password}@{host}/{DBname}'.format(DBType=DBType,username=username,password=password,host=host,DBname=DBname))
-        ##############
-#         tableName = eval(Table)
         a = PCmemory.query.all()
         
         page=request.args.get('page',1,type=int)
@@ -55,20 +45,28 @@ def visulizeData():
             columnNameList = list(keyDict)[1:]
             v1.append(line.avai)
             v2.append(line.percent)
-            print(v1)
-            print(v2)
             xaxis.append(line.timeStamp)
+    v11 = []
+    v22 = []
+    for i in v1:
+        i = i.replace("MB","")
+        print(i)
+        v11.append(i)
+    print(v11)
+    for i in v2:
+        i = i.replace("%","")
+        v22.append(i)
     c = (
-        Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "500px",height= "300px"))
+        Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
-        .add_yaxis("第一条",v1)
-        .add_yaxis("第二条",v2)
+        .add_yaxis("第一条",v11)
+        .add_yaxis("第二条",v22)
         .set_global_opts(title_opts=opts.TitleOpts(title="Bar-基本示例", subtitle="我是副标题")))
     linechart = (
-        Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "500px",height= "300px"))
+        Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
-        .add_yaxis("第一条",v1)
-        .add_yaxis("第二条",v2)
+        .add_yaxis("第一条",v11)
+        .add_yaxis("第二条",v22    )
         .set_global_opts(title_opts=opts.TitleOpts(title="linechart", subtitle="onlyfordisplay")))
 #     for i in range(len(queryItems)):
 #         c.add_yaxis(str(queryItems[i]),queryItems[i])
@@ -76,28 +74,3 @@ def visulizeData():
     return render_template("tableviews/charts.html",c=c.render_embed(),linechart=linechart.render_embed())
 
 
-
-# if Table != None:
-#     a = ceshi.query.all()
-#
-#     page=request.args.get('page',1,type=int)
-#     taskpagenation = ceshi.query.order_by(ceshi.ID.desc()).paginate(page,per_page=4,error_out=False)
-#     queryItems = taskpagenation.items
-#     print(queryItems)
-#     for line in a:
-#         keyDict = line.__dict__.keys()
-#         columnNameList = list(keyDict)[1:]
-#     return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList,queryItems=queryItems,taskpagenation=taskpagenation)
-# else:
-#     tableName = eval('memory')
-#     a = tableName.query.all()
-#
-#     page = request.args.get('page', 1, type=int)
-#     taskpagenation = tableName.query.order_by(tableName.id.asc()).paginate(page, per_page=4, error_out=False)
-#     queryItems = taskpagenation.items
-#     print(queryItems)
-#     for line in a:
-#         keyDict = line.__dict__.keys()
-#         columnNameList = list(keyDict)[1:]
-#     return render_template("tableviews/tableOnly.html", a=a, columnNameList=columnNameList, queryItems=queryItems,
-#                            taskpagenation=taskpagenation)
