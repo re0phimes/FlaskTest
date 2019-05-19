@@ -30,7 +30,7 @@ body {
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
+  margin-left: 15;
 }
 
 @media (min-width: 768px) {
