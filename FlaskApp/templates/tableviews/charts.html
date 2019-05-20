@@ -1,78 +1,37 @@
 {% extends "base.html" %}
-{% block script %}
-<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
-{% endblock %}
-{% from 'bootstrap/pagination.html' import render_pagination %}
-{% block title %}IndexPageTest{% endblock %}
-{% block styles %}
-    {{ super() }}
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
-{{super()}}
-{% endblock %}
-{% block navibar %}
-{{ super() }}
-{% endblock %}
+{% block title %}<title>ChartPage</title>{% endblock %}
 
 {% block page_content %}
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-
-<div id="wrapper">
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">Start Bootstrap </div>
-        <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-        </div>
-    </div>
-</div>
-
 
 
 <div id="content-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
                         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                         this is heading
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <div id="bar">
                             {{ c|safe }}
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        this is footer
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
                         <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                         this is heading
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <div id="bar">
                             {{ linechart|safe }}
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        this is footer
                     </div>
                 </div>
             </div>
@@ -80,10 +39,13 @@
     </div>
 </div>
 
+{% endblock %}
 
-
-
-
-
+{% block script_bot %}
+{{ super() }}
+    window.onresize = function () {
+    //重置容器高宽
+    linechart.resize();
+    };
 {% endblock %}
 

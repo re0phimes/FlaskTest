@@ -17,15 +17,15 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<!-- Custom styles for this template -->
-	<link href="../static/css/simple-sidebar.css" rel="stylesheet">
+	<link href="/static/css/simple-sidebar.css" rel="stylesheet">
 	{% endblock %}
 
 </head>
 
 <body>
 {% block nav %}
-		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-			<button class="btn btn-primary" id="menu-toggle">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="btn btn-danger" id="menu-toggle">
 				<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
 				Toggle Menu
 			</button>
@@ -60,15 +60,14 @@
 <div class="d-flex" id="wrapper">
 
 	<!-- Sidebar -->
-	<div class="bg-light border-right" id="sidebar-wrapper">
-		<div class="sidebar-heading">Start Bootstrap </div>
+	<div class="bg-secondary border-right" id="sidebar-wrapper">
 		<div class="list-group list-group-flush">
-			<a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+			<a href="/" class="list-group-item list-group-item-action bg-secondary text-white">Dashboard</a>
+			<a href="/tableviews/charts/" class="list-group-item list-group-item-action bg-secondary text-white">Charts</a>
+			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Tables</a>
+			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Events</a>
+			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Profile</a>
+			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Status</a>
 		</div>
 	</div>
 	<!-- /#sidebar-wrapper -->
@@ -78,11 +77,7 @@
 
 
 		{% block page_content %}
-		<div class="container-fluid">
-			<h1 class="mt-4">Simple Sidebar</h1>
-			<p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-			<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-		</div>
+
 		{% endblock %}
 	</div>
 	<!-- /#page-content-wrapper -->
@@ -91,16 +86,18 @@
 <!-- /#wrapper -->
 
 <!-- Bootstrap core JavaScript -->
-<script src="../static/jquery/jquery.min.js"></script>
-<script src="../static/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Menu Toggle Script -->
+{% block script_bot %}
 <script>
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
 </script>
+    {% endblock %}
 
 </body>
 
