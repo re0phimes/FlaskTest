@@ -6,12 +6,19 @@
 <!--<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>-->
 
 {% endblock %}
+{% block scirpts %}
+    
+{% endblock %}}
 {% block navibar %}
 	{{ super() }}
 {% endblock %}
 
 {% block page_content %}
-
+		<div id="current_page">
+			<ol class="breadcrumb">
+	  <li class="breadcrumb-item active"><a href="/">Home</a></li>
+	</ol>
+		</div>
 
 <div class="jumbotron">
 	<div class="container">

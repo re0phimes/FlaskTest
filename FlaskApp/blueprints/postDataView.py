@@ -8,6 +8,7 @@ from models import ceshi
 from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
+from pyecharts.options import DataZoomOpts
 from models import ceshi, memory, PCmemory
 
 
@@ -56,8 +57,8 @@ def visulizeData():
     for i in v2:
         i = i.replace("%","")
         v22.append(i)
-    c = (
-        Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "auto",height= "300px"))
+    barchart = (
+        Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "",height= "300px"))
         .add_xaxis(xaxis)
         .add_yaxis("第一条",v11)
         .add_yaxis("第二条",v22)
@@ -66,11 +67,9 @@ def visulizeData():
         Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
         .add_yaxis("第一条",v11)
-        .add_yaxis("第二条",v22    )
+        .add_yaxis("第二条",v22)
         .set_global_opts(title_opts=opts.TitleOpts(title="linechart", subtitle="onlyfordisplay")))
-#     for i in range(len(queryItems)):
-#         c.add_yaxis(str(queryItems[i]),queryItems[i])
-# 
-    return render_template("tableviews/charts.html",c=c.render_embed(),linechart=linechart.render_embed())
+
+    return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id)
 
 

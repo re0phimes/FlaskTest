@@ -1,51 +1,97 @@
 {% extends "base.html" %}
 {% block title %}<title>ChartPage</title>{% endblock %}
-
+{% block scripts %}
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+{% endblock %}
 {% block page_content %}
 
 
 <div id="content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                        this is heading
-                    </div>
-                    <div class="card-body">
-                        <div id="bar">
-                            {{ c|safe }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                        this is heading
-                    </div>
-                    <div class="card-body">
-                        <div id="bar">
-                            {{ linechart|safe }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div id="current_page">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active"><a href="/tableviews/charts/">Charts</a></li>
+		</ol>
+	</div>
 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card card-default">
+					<div class="card-header">
+						<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+						Bar Chart
+					</div>
+					<div class="card-body">
+						<div id="bar">
+							{{ barchart|safe }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card card-default">
+					<div class="card-header">
+						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+						Line Chart
+					</div>
+					<div class="card-body">
+						<div id="line">
+							{{ linechart|safe }}
+						</div>
+					</div>
+					    <script>
+        var lchart = eval({{linechartid}})
+
+        $(
+            function () {
+                fetchData(lchart);
+                setInterval(fetchData, 2000);
+            }
+        );
+
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/tableviews/charts/",
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        }
+    </script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<button class="btn btn-primary">get newdata</button>
 {% endblock %}
 
 {% block script_bot %}
 {{ super() }}
-    window.onresize = function () {
-    //重置容器高宽
-    linechart.resize();
-    };
-{% endblock %}
 
+window.onresize = function () {
+//重置容器高宽
+eval({{linechartid}}).resize();
+eval({{barchartid}}).resize();
+};
+
+
+$("button").click(function(){
+		var lchart = eval({{linechartid}})
+		});
+		$.ajax({
+			type: "GET",
+			url: "http://127.0.0.1:5000/tableviews/untitled.txt",
+			dataType: 'json',
+			success: function(result) {
+				aleart(result)
+				lchart.setOption(result);
+			}
+		});
+{% endblock %}

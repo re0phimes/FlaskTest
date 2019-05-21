@@ -19,6 +19,8 @@
 	<!-- Custom styles for this template -->
 	<link href="/static/css/simple-sidebar.css" rel="stylesheet">
 	{% endblock %}
+	{% block scripts %}
+	{% endblock %}
 
 </head>
 
@@ -34,7 +36,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!-- 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
 						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -54,17 +56,16 @@
 						</div>
 					</li>
 				</ul>
-			</div>
+				</div> -->
 		</nav>
 		{% endblock %}
 <div class="d-flex" id="wrapper">
-
 	<!-- Sidebar -->
 	<div class="bg-secondary border-right" id="sidebar-wrapper">
 		<div class="list-group list-group-flush">
 			<a href="/" class="list-group-item list-group-item-action bg-secondary text-white">Dashboard</a>
 			<a href="/tableviews/charts/" class="list-group-item list-group-item-action bg-secondary text-white">Charts</a>
-			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Tables</a>
+			<a href="/tableviews/queryData/" class="list-group-item list-group-item-action bg-secondary text-white">Tables</a>
 			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Events</a>
 			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Profile</a>
 			<a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Status</a>
@@ -84,20 +85,21 @@
 
 </div>
 <!-- /#wrapper -->
-
 <!-- Bootstrap core JavaScript -->
 <script src="/static/jquery/jquery.min.js"></script>
 <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Menu Toggle Script -->
-{% block script_bot %}
+
 <script>
+{% block script_bot %}
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
+{% endblock %}
 </script>
-    {% endblock %}
+
 
 </body>
 

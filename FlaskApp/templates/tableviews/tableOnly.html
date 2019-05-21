@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% from 'bootstrap/pagination.html' import render_pagination %}
-{% block title %}IndexPageTest{% endblock %}
+{% block title %}
+<title>Tables</title>
+{% endblock %}
 {% block styles %}
 <link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>
 {{super()}}
@@ -10,12 +12,12 @@
 {% endblock %}
 
 {% block page_content %}
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+		<div id="current_page">
+			<ol class="breadcrumb">
+	  <li class="breadcrumb-item active"><a href="/">Home</a></li>
+	  <li class="breadcrumb-item active"><a href="/tableviews/queryData/">Table</a></li>
+	</ol>
+		</div>
 <div class="container">
 			<table class="table table-striped ">
 				<thead>
