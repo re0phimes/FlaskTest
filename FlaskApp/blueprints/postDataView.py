@@ -1,15 +1,12 @@
 from flask import Blueprint,render_template, request, flash, current_app
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from jinja2 import Markup
 import os
 from models import ceshi
 from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
-from pyecharts.options import DataZoomOpts
 from models import ceshi, memory, PCmemory
+from FlaskApp.getPCmemory import getMemory
 
 
 
@@ -24,7 +21,7 @@ def queryData():
         page=request.args.get('page',1,type=int)
         taskpagenation = PCmemory.query.order_by(PCmemory.index.desc()).paginate(page,per_page=4,error_out=False)
         queryItems = taskpagenation.items
-        print(queryItems)
+        # print(queryItems)
         for line in a:
             keyDict = line.__dict__.keys()
             columnNameList = list(keyDict)[1:]
@@ -49,11 +46,12 @@ def visulizeData():
             xaxis.append(line.timeStamp)
     v11 = []
     v22 = []
+    print(v11)
     for i in v1:
         i = i.replace("MB","")
-        print(i)
+        # print(i)
         v11.append(i)
-    print(v11)
+    # print(v11)
     for i in v2:
         i = i.replace("%","")
         v22.append(i)
@@ -69,7 +67,13 @@ def visulizeData():
         .add_yaxis("第一条",v11)
         .add_yaxis("第二条",v22)
         .set_global_opts(title_opts=opts.TitleOpts(title="linechart", subtitle="onlyfordisplay")))
-
     return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id)
+
+
+@postdata_bp.route("/testdata/", methods=['GET'])
+def getdata():
+    memo = getMemory()
+    dicdata = memo.another_memo()
+    return dicdata
 
 

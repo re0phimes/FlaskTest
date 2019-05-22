@@ -49,17 +49,18 @@
         $(
             function () {
                 fetchData(lchart);
-                setInterval(fetchData, 2000);
+                setInterval(fetchData, 1000);
             }
         );
 
         function fetchData() {
             $.ajax({
                 type: "GET",
-                url: "http://127.0.0.1:5000/tableviews/charts/",
+                url: "http://127.0.0.1:5000/tableviews/testdata/",
                 dataType: 'json',
                 success: function (result) {
-                    console.log(result);
+                    console.log(result["sss"]);
+                    lchart.setOption(result["sss"]);
                 }
             });
         }
