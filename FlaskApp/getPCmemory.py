@@ -3,6 +3,8 @@ import pandas as pd
 from datetime import datetime
 # import matplotlib.pyplot as plt
 from sqlalchemy import create_engine
+from threading import Timer
+
 
 
 engine = create_engine('mysql+mysqlconnector://root:123456@localhost:3306/test')
@@ -29,7 +31,10 @@ for value in memo.values():
 #     print(value)
 # columns=['total','available','percent','used','free']
 
-class getMemory():
+class getMemory:
+	def __init__(self,timer_interval):
+		self.timer_interval = timer_interval
+		
     def record_memo(self):
         global tempSeriesList, finalDFList, count, finalDF
         while True:
@@ -64,29 +69,35 @@ class getMemory():
                 # finalDF.to_csv("aaa.csv")
                 count = 0
 
+				
+	
+	
     def another_memo(self):
         vm = psutil.virtual_memory()
-        # listdata = [psutil.cpu_percent(interval=1),vm.used/1024/1024,vm.available/1024/1024]
-        listdata = []
-        listdata2 = []
-        while True:
-            if len(listdata) < 10:
-                listdata2.append(psutil.cpu_percent(interval=1))
-                listdata.append(vm.used/1024/1024)
-                time.sleep(1)
-            else:
-                break;
+        cpudata = []
+        vmdatadata2 = []
+		if len(cpudata) < 10:
+			cpudata.append(psutil.cpu_percent(interval=1))
+			vmdatadata2.append(vm.used/1024/1024)
+
+		else:
+			cpudata=cpudata[1:]
+			cpudata.append((psutil.cpu_percent(interval=1))
         ddd = {}
-        ddd["sss"] = listdata
+        ddd["sss"] = cpudata
         ddd["datetime"] = datetime.now().strftime("%Y-%m-%d %H:%S:%M")
         datalist = {"cpu":psutil.cpu_percent(interval=1),"memoused":vm.used,"memoavai":vm.available}
-        listdata = []
-        listdata2 =[]
-        return json.dumps(ddd,ensure_ascii=False)
+        cpudata = []
+        vmdatadata2 =[]
+		print(ddd)
+		time.sleep(1)
+		t=Timer(timer_interval,another_memo)
+        # return json.dumps(ddd,ensure_ascii=False)
         # while True:
         #     print(psutil.cpu_percent(interval=1))
         #     print(vm.used / 1024 / 1024 / 1024)
         #     print(vm.available / 1024 / 1024 / 1024)
         #     time.sleep(0.5)
-
+	
+	
 

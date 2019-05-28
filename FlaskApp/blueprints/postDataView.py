@@ -6,8 +6,8 @@ from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
-from FlaskApp.getPCmemory import getMemory
-
+from getPCmemory import getMemory
+from threading import Timer
 
 
 postdata_bp = Blueprint('tableviews',__name__)
@@ -72,8 +72,8 @@ def visulizeData():
 
 @postdata_bp.route("/testdata/", methods=['GET'])
 def getdata():
-    memo = getMemory()
-    dicdata = memo.another_memo()
-    return dicdata
+    memo = getMemory(1)
+    t = Timer(memo.time_interval, memo.another_memo())
+
 
 
