@@ -1,13 +1,33 @@
+from threading import Timer
+import time
 import psutil
-from mysql.connector import connect
-from sqlalchemy import Column, String, create_engine
-from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
 
-# 初始化数据库
-DB_connect = "mysql+mysqlconnector://root:123456@localhost:3306/test"
-engine = create_engine(DB_connect)
+datalist = []
 
 
+def fun_timer():
+    global datalist
+    vm = psutil.virtual_memory()
+    vmdata = {}
+    onedata = {}
+    vmdata['total'] = vm.total
+    vmdata['avai'] = vm.available
+    vmdata['used'] = vm.used
+    vmdata['free'] = vm.free
+    onedata[datetime.now().strftime("%Y-%M-%d %H:%m:%S")] = vmdata
+    if len(datalist) < 10:
+        datalist.append(onedata)
+    else:
+        datalist = datalist[1:]
+        datalist.append(onedata)
+    #     print(a)
+    print(datalist)
+    global timer
+    timer = Timer(1, fun_timer)
+    timer.start()
 
-memo = psutil.virtual_memory()
-memo.free
+
+timer = Timer(1, fun_timer)
+timer.start()
+time.sleep(1)

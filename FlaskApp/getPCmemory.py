@@ -32,9 +32,9 @@ for value in memo.values():
 # columns=['total','available','percent','used','free']
 
 class getMemory:
-	def __init__(self,timer_interval):
-		self.timer_interval = timer_interval
-		
+    def __init__(self,timer_interval):
+        self.timer_interval = timer_interval
+
     def record_memo(self):
         global tempSeriesList, finalDFList, count, finalDF
         while True:
@@ -44,7 +44,7 @@ class getMemory:
             memo["percent"] = str(psutil.virtual_memory().percent) + "%"
             memo["used"] = str(round(psutil.virtual_memory().used / 1024 / 1024, 3)) + "MB"
             memo["free"] = str(round(psutil.virtual_memory().free / 1024 / 1024, 3)) + "MB"
-            timeStamp = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            timeStamp = str(datetime.now().strftime('%Y-%M-%d %H:%m:%S'))
             memoryList = []
             memoryList.append(timeStamp)
             for value in memo.values():
@@ -69,35 +69,35 @@ class getMemory:
                 # finalDF.to_csv("aaa.csv")
                 count = 0
 
-				
-	
-	
+
+
     def another_memo(self):
         vm = psutil.virtual_memory()
         cpudata = []
         vmdatadata2 = []
-		if len(cpudata) < 10:
-			cpudata.append(psutil.cpu_percent(interval=1))
-			vmdatadata2.append(vm.used/1024/1024)
+        if len(cpudata) < 10:
+            cpudata.append(psutil.cpu_percent(interval=1))
+            vmdatadata2.append(vm.used/1024/1024)
 
-		else:
-			cpudata=cpudata[1:]
-			cpudata.append((psutil.cpu_percent(interval=1))
+        else:
+            cpudata=cpudata[1:]
+            cpudata.append(psutil.cpu_percent(interval=1))
         ddd = {}
         ddd["sss"] = cpudata
         ddd["datetime"] = datetime.now().strftime("%Y-%m-%d %H:%S:%M")
         datalist = {"cpu":psutil.cpu_percent(interval=1),"memoused":vm.used,"memoavai":vm.available}
         cpudata = []
         vmdatadata2 =[]
-		print(ddd)
-		time.sleep(1)
-		t=Timer(timer_interval,another_memo)
-        # return json.dumps(ddd,ensure_ascii=False)
-        # while True:
-        #     print(psutil.cpu_percent(interval=1))
-        #     print(vm.used / 1024 / 1024 / 1024)
-        #     print(vm.available / 1024 / 1024 / 1024)
-        #     time.sleep(0.5)
-	
-	
+        print(ddd)
+        global timer
+        timer=Timer(timer_interval,another_memo)
+        timer.start()
+
+
+
+if __name__ == "main":
+    meme = getMemory(1)
+    timer = Timer(2, meme.another_memo)
+    timer.start()
+
 
