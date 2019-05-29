@@ -1,7 +1,6 @@
-import psutil, time, json
+import psutil, time
 import pandas as pd
 from datetime import datetime
-# import matplotlib.pyplot as plt
 from sqlalchemy import create_engine
 from threading import Timer
 
@@ -18,15 +17,15 @@ cpudic = {}
 cpudic["count"] = psutil.cpu_count()
 cpudic["freq"] = psutil.cpu_freq()
 cpudic["percentage"] = psutil.cpu_percent()
-
+vmdatadata2 = [{"hello":"123"}]
 
 
 class getMemory:
-    vmdatadata2 = [{"hello":"123"}]
+
     def __init__(self,timer_interval):
         self.timer_interval = timer_interval
 
-    def record_memo(self):
+    def record_sql(self):
         global tempSeriesList, finalDFList, count, finalDF
         while True:
             memo = {}
@@ -62,29 +61,29 @@ class getMemory:
 
 
 
-    def another_memo(self):
+    def get_memo(self):
         vm = psutil.virtual_memory()
         cpudata = []
         global vmdatadata2
         if len(cpudata) < 10:
             cpudata.append(psutil.cpu_percent(interval=1))
             vmdatadata2.append(vm.used/1024/1024)
-
         else:
             cpudata=cpudata[1:]
             cpudata.append(psutil.cpu_percent(interval=1))
+        print(vmdatadata2)
         ddd = {}
         ddd["sss"] = cpudata
         ddd["datetime"] = datetime.now().strftime("%Y-%m-%d %H:%S:%M")
         datalist = {"cpu":psutil.cpu_percent(interval=1),"memoused":vm.used,"memoavai":vm.available}
         cpudata = []
-        vmdatadata2 =[]
+        # vmdatadata2 =[]
         global timer
-        timer=Timer(getmemo.timer_interval,getmemo.another_memo)
+        timer=Timer(getmemo.timer_interval,getmemo.get_memo)
         timer.start()
 
     def timer_func(self):
         getmemo = getMemory(1)
-        timer=Timer(1,getmemo.another_memo)
+        timer=Timer(1,getmemo.get_memo)
         timer.start()
         time.sleep(1)

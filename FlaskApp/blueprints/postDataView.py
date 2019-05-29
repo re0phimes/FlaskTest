@@ -7,8 +7,7 @@ from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
 from getPCmemory import getMemory
-import getPCmemory
-from threading import Timer
+from getPCmemory import vmdatadata2
 
 postdata_bp = Blueprint('tableviews',__name__)
 
@@ -31,7 +30,7 @@ def queryData():
 @postdata_bp.route("/charts/", methods=['POST','GET'])
 def visulizeData():
     a = PCmemory.query.all()
-    columnNameList = []
+    # columnNameList = []
     page=request.args.get('page',1,type=int)
     taskpagenation = PCmemory.query.order_by(PCmemory.index.desc()).paginate(page,per_page=10,error_out=False)
     queryItems = taskpagenation.items
@@ -74,5 +73,4 @@ def visulizeData():
 def getdata():
     getvmdata = getMemory(1)
     getvmdata.timer_func()
-    return json.dumps(getvmdata.vmdatadata2[0])
-    # timer = Timer(getvmdata.timer_interval, getvmdata.another_memo())
+    return json.dumps(vmdatadata2[0])
