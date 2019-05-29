@@ -1,14 +1,14 @@
 from flask import Blueprint,render_template, request, flash, current_app
 from jinja2 import Markup
-import os
+import os, json
 from models import ceshi
 from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
 from getPCmemory import getMemory
+import getPCmemory
 from threading import Timer
-
 
 postdata_bp = Blueprint('tableviews',__name__)
 
@@ -72,8 +72,7 @@ def visulizeData():
 
 @postdata_bp.route("/testdata/", methods=['GET'])
 def getdata():
-    memo = getMemory(1)
-    t = Timer(memo.time_interval, memo.another_memo())
-
-
-
+    getvmdata = getMemory(1)
+    getvmdata.timer_func()
+    return json.dumps(getvmdata.vmdatadata2[0])
+    # timer = Timer(getvmdata.timer_interval, getvmdata.another_memo())

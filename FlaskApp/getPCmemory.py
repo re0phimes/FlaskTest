@@ -19,19 +19,10 @@ cpudic["count"] = psutil.cpu_count()
 cpudic["freq"] = psutil.cpu_freq()
 cpudic["percentage"] = psutil.cpu_percent()
 
-memo = {}
-memo["total"] = str(psutil.virtual_memory().total/1024/1024) + "MB"
-memo["avai"] = str(psutil.virtual_memory().available/1024/1024) + "MB"
-memo["percent"] = str(psutil.virtual_memory().percent) + "%"
-memo["used"] = str(psutil.virtual_memory().used/1024/1024) + "MB"
-memo["free"] = str(psutil.virtual_memory().free/1024/1024) + "MB"
-memoryList = []
-for value in memo.values():
-    memoryList.append(value)
-#     print(value)
-# columns=['total','available','percent','used','free']
+
 
 class getMemory:
+    vmdatadata2 = [{"hello":"123"}]
     def __init__(self,timer_interval):
         self.timer_interval = timer_interval
 
@@ -74,7 +65,7 @@ class getMemory:
     def another_memo(self):
         vm = psutil.virtual_memory()
         cpudata = []
-        vmdatadata2 = []
+        global vmdatadata2
         if len(cpudata) < 10:
             cpudata.append(psutil.cpu_percent(interval=1))
             vmdatadata2.append(vm.used/1024/1024)
@@ -88,16 +79,12 @@ class getMemory:
         datalist = {"cpu":psutil.cpu_percent(interval=1),"memoused":vm.used,"memoavai":vm.available}
         cpudata = []
         vmdatadata2 =[]
-        print(ddd)
         global timer
-        timer=Timer(timer_interval,another_memo)
+        timer=Timer(getmemo.timer_interval,getmemo.another_memo)
         timer.start()
 
-
-
-if __name__ == "main":
-    meme = getMemory(1)
-    timer = Timer(2, meme.another_memo)
-    timer.start()
-
-
+    def timer_func(self):
+        getmemo = getMemory(1)
+        timer=Timer(1,getmemo.another_memo)
+        timer.start()
+        time.sleep(1)
