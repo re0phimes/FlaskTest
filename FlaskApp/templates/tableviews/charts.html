@@ -31,6 +31,7 @@
 				</div>
 			</div>
 		</div>
+		<br/>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card card-default">
@@ -59,8 +60,8 @@
                 url: "http://127.0.0.1:5000/tableviews/testdata/",
                 dataType: 'json',
                 success: function (result) {
-                    console.log(result["sss"]);
-                    lchart.setOption(result["sss"]);
+                    console.log(result["data"]);
+                    lchart.setOption(yaxis:result["data"]);
                 }
             });
         }
@@ -88,11 +89,11 @@ $("button").click(function(){
 		});
 		$.ajax({
 			type: "GET",
-			url: "http://127.0.0.1:5000/tableviews/untitled.txt",
+			url: "http://127.0.0.1:5000/tableviews/testdata/",
 			dataType: 'json',
 			success: function(result) {
 				aleart(result)
-				lchart.setOption(result);
+				lchart.setOption(result["data"]);
 			}
 		});
 {% endblock %}

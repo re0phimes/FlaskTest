@@ -7,7 +7,10 @@ from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
 from getPCmemory import getMemory
-from getPCmemory import vmdatadata2
+from threading import Timer
+import getPCmemory
+
+
 
 postdata_bp = Blueprint('tableviews',__name__)
 
@@ -71,6 +74,8 @@ def visulizeData():
 
 @postdata_bp.route("/testdata/", methods=['GET'])
 def getdata():
-    getvmdata = getMemory(1)
-    getvmdata.timer_func()
-    return json.dumps(vmdatadata2[0])
+    finaldata ={}
+    timer = Timer(1,getPCmemory.get_memo)
+    # print(getPCmemory.vmdatadata2)
+    finaldata["data"]=getPCmemory.vmdatadata2
+    return json.dumps(finaldata)

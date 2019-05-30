@@ -61,29 +61,44 @@ class getMemory:
 
 
 
-    def get_memo(self):
-        vm = psutil.virtual_memory()
-        cpudata = []
-        global vmdatadata2
-        if len(cpudata) < 10:
-            cpudata.append(psutil.cpu_percent(interval=1))
-            vmdatadata2.append(vm.used/1024/1024)
-        else:
-            cpudata=cpudata[1:]
-            cpudata.append(psutil.cpu_percent(interval=1))
-        print(vmdatadata2)
-        ddd = {}
-        ddd["sss"] = cpudata
-        ddd["datetime"] = datetime.now().strftime("%Y-%m-%d %H:%S:%M")
-        datalist = {"cpu":psutil.cpu_percent(interval=1),"memoused":vm.used,"memoavai":vm.available}
-        cpudata = []
-        # vmdatadata2 =[]
-        global timer
-        timer=Timer(getmemo.timer_interval,getmemo.get_memo)
-        timer.start()
+    # def get_memo(self):
+    #     vm = psutil.virtual_memory()
+    #     onedata = {}
+    #     global vmdatadata2
+    #     dtime = datetime.now().strftime("%Y-%m-%d %H:%S:%M")
+    #     onedata[dtime] = vm.percent
+    #     if len(vmdatadata2) < 10:
+    #         vmdatadata2.append(onedata)
+    #     else:
+    #         vmdatadata2=vmdatadata2[1:]
+    #         cpudata.append(onedata)
+    #     print(vmdatadata2)
+    #     global timer
+    #     timer=Timer(getmemo.timer_interval,getmemo.get_memo)
+    #     timer.start()
+    #
+    # def timer_func(self):
+    #     getmemo = getMemory(1)
+    #     timer=Timer(1,getmemo.get_memo)
+    #     timer.start()
+    #     time.sleep(1)
 
-    def timer_func(self):
-        getmemo = getMemory(1)
-        timer=Timer(1,getmemo.get_memo)
-        timer.start()
-        time.sleep(1)
+def get_memo():
+    vm = psutil.virtual_memory()
+    onedata = {}
+    global vmdatadata2
+    dtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    onedata[dtime] = vm.percent
+    if len(vmdatadata2) < 10:
+        vmdatadata2.append(vm.percent)
+    else:
+        vmdatadata2 = vmdatadata2[1:]
+        vmdatadata2.append(vm.percent)
+    # print(vmdatadata2)
+    global timer
+    timer=Timer(1,get_memo)
+    timer.start()
+
+timer = Timer(1,get_memo)
+timer.start()
+time.sleep(1)
