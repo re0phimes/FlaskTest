@@ -47,24 +47,7 @@
 					    <script>
         var lchart = eval({{linechartid}})
 
-        $(
-            function () {
-                fetchData(lchart);
-                setInterval(fetchData, 1000);
-            }
-        );
 
-        function fetchData() {
-            $.ajax({
-                type: "GET",
-                url: "http://127.0.0.1:5000/tableviews/testdata/",
-                dataType: 'json',
-                success: function (result) {
-                    console.log(result["data"]);
-                    lchart.setOption(yaxis:result["data"]);
-                }
-            });
-        }
     </script>
 				</div>
 			</div>
@@ -79,21 +62,29 @@
 
 window.onresize = function () {
 //重置容器高宽
-eval({{linechartid}}).resize();
-eval({{barchartid}}).resize();
+lchart = eval({{linechartid}}).
+lchart.resize();
+lchart.resize();
 };
+<!-- 设置option内容 -->
 
+<!-- 设置方法 -->
 
-$("button").click(function(){
-		var lchart = eval({{linechartid}})
-		});
-		$.ajax({
-			type: "GET",
-			url: "http://127.0.0.1:5000/tableviews/testdata/",
-			dataType: 'json',
-			success: function(result) {
-				aleart(result)
-				lchart.setOption(result["data"]);
-			}
-		});
+setInterval(
+function fetchData() {
+	$.ajax({
+		type:"GET",
+		url:"http://127.0.0.1:5000/tableviews/testdata/",
+		dataType:'json',
+		success:function(result){
+			lchart.setOption({
+				series:[{
+					data:result["data"],
+					data:[10,10,10,10,10,10,10,10,10,10]
+				}]
+			});
+		}
+	})
+}, 1000);
+
 {% endblock %}
