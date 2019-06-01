@@ -71,7 +71,7 @@ bchart.resize();
 
 <!-- 设置方法 -->
 
-setInterval(
+var autoupdate = setInterval(
 function fetchData() {
 	$.ajax({
 		type:"GET",
@@ -102,7 +102,16 @@ function fetchData() {
 			})  <!-- 这里结束了lchart的数据 -->
 			bchart.setOption({
 				series:[{
+					name:"memo_used",
 					data:vm_used
+				},
+				{
+					name:"memo_available",
+					data:vm_available
+				},
+				{
+					name:"memo_free",
+					data:vm_free,
 				}],
 				xAxis:[{
 					data:vm_datetime
@@ -113,4 +122,9 @@ function fetchData() {
 	})
 }, 1000);
 
+$(function(){
+	$("button").click(function(){
+		clearInterval(autoupdate)
+	});
+})
 {% endblock %}

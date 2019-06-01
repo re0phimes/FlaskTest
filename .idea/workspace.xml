@@ -27,8 +27,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/FlaskApp/getPCmemory.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="488">
-                  <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
+                <state relative-caret-position="146">
+                  <caret line="97" column="54" selection-start-line="97" selection-start-column="54" selection-end-line="97" selection-end-column="54" />
                 </state>
               </provider>
             </entry>
@@ -75,8 +75,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/FlaskApp/blueprints/postDataView.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="760">
-                  <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+                <state relative-caret-position="317">
+                  <caret line="72" column="189" selection-start-line="72" selection-start-column="179" selection-end-line="72" selection-end-column="189" />
                   <folding>
                     <element signature="e#0#72#0" expanded="true" />
                   </folding>
@@ -87,8 +87,20 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/FlaskApp/templates/tableviews/charts.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="464">
-                  <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+                <state relative-caret-position="502">
+                  <caret line="128" column="2" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="2" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="450">
+                  <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+                  <folding>
+                    <element signature="e#0#111#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -127,6 +139,7 @@
         <option value="$PROJECT_DIR$/FlaskApp/templates/base.html" />
         <option value="$PROJECT_DIR$/FlaskApp/test2.py" />
         <option value="$PROJECT_DIR$/FlaskApp/test.py" />
+        <option value="$PROJECT_DIR$/FlaskApp/templates/charts/chartView.html" />
         <option value="$PROJECT_DIR$/FlaskApp/blueprints/postDataView.py" />
         <option value="$PROJECT_DIR$/FlaskApp/getPCmemory.py" />
         <option value="$PROJECT_DIR$/FlaskApp/templates/tableviews/charts.html" />
@@ -179,6 +192,13 @@
               <item name="FlaskTest" type="462c0819:PsiDirectoryNode" />
               <item name="FlaskApp" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FlaskTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlaskTest" type="462c0819:PsiDirectoryNode" />
+              <item name="FlaskApp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FlaskTest" type="b2602c69:ProjectViewProjectNode" />
@@ -363,6 +383,7 @@
       <workItem from="1559134384742" duration="4801000" />
       <workItem from="1559221491121" duration="5053000" />
       <workItem from="1559308786633" duration="3836000" />
+      <workItem from="1559355196189" duration="19167000" />
     </task>
     <task id="LOCAL-00001" summary="update form stringfield to better  fileds">
       <created>1557496335180</created>
@@ -392,11 +413,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559228375616</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="auto update">
+      <created>1559408870789</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1559408870789</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46573000" />
+    <option name="totallyTimeSpent" value="65740000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -408,10 +436,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1126" extended-state="7" />
+    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17764471" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17914172" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -442,7 +470,8 @@
     <MESSAGE value="small modify" />
     <MESSAGE value="upgrade css to bootstrap4" />
     <MESSAGE value="update timer" />
-    <option name="LAST_COMMIT_MESSAGE" value="update timer" />
+    <MESSAGE value="auto update" />
+    <option name="LAST_COMMIT_MESSAGE" value="auto update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -457,7 +486,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FlaskTest$test.coverage" NAME="test Coverage Results" MODIFIED="1559144354130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
     <SUITE FILE_PATH="coverage/FlaskTest$getPCmemory.coverage" NAME="getPCmemory Coverage Results" MODIFIED="1559225913947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
-    <SUITE FILE_PATH="coverage/FlaskTest$Run.coverage" NAME="Run Coverage Results" MODIFIED="1559311670352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
+    <SUITE FILE_PATH="coverage/FlaskTest$Run.coverage" NAME="Run Coverage Results" MODIFIED="1559410279573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
     <SUITE FILE_PATH="coverage/FlaskTest$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1559144889862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
   </component>
   <component name="editorHistoryManager">
@@ -475,16 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="1757" selection-start-line="1757" selection-end-line="1757" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#111#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -562,20 +581,6 @@
     <entry file="file://$PROJECT_DIR$/FlaskApp/templates/test.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/tableviews/tableOnly.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="87" selection-start-line="30" selection-start-column="87" selection-end-line="30" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FlaskApp/static/css/styless.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -596,27 +601,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskApp/blueprints/postDataView.py">
+    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="87" selection-start-line="30" selection-start-column="87" selection-end-line="30" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/tableviews/tableOnly.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/charts/chartView.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
-          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskApp/blueprints/postDataView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="72" column="189" selection-start-line="72" selection-start-column="179" selection-end-line="72" selection-end-column="189" />
           <folding>
             <element signature="e#0#72#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/tableviews/charts.html">
+    <entry file="file://$PROJECT_DIR$/FlaskApp/getPCmemory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="146">
+          <caret line="97" column="54" selection-start-line="97" selection-start-column="54" selection-end-line="97" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskApp/getPCmemory.py">
+    <entry file="file://$PROJECT_DIR$/FlaskApp/templates/tableviews/charts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
+        <state relative-caret-position="502">
+          <caret line="128" column="2" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="2" />
         </state>
       </provider>
     </entry>
