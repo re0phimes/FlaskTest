@@ -60,13 +60,14 @@ def visulizeData():
     barchart = (
         Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "",height= "300px"))
         .add_xaxis(xaxis)
-        .add_yaxis("第一条",v11)
-        .add_yaxis("第二条",v22)
+        .add_yaxis("memo_used",v11)
+        .add_yaxis("memo_free",v22)
+        .add_yaxis("memo_available", v22)
         .set_global_opts(title_opts=opts.TitleOpts(title="Bar-基本示例", subtitle="我是副标题")))
     linechart = (
         Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
-        .add_yaxis("第一条",v11)
+        .add_yaxis("memory percent",v11)
         .add_yaxis("第二条",v22)
         .set_global_opts(title_opts=opts.TitleOpts(title="linechart", subtitle="onlyfordisplay")))
     return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id)

@@ -17,7 +17,12 @@ cpudic = {}
 cpudic["count"] = psutil.cpu_count()
 cpudic["freq"] = psutil.cpu_freq()
 cpudic["percentage"] = psutil.cpu_percent()
-vmdatadata2 = [{"hello":"123"}]
+
+
+# --------------------------------
+dtimelist = []
+valuelist = []
+vmdatadata2 = []
 
 
 class getMemory:
@@ -85,15 +90,22 @@ class getMemory:
 
 def get_memo():
     vm = psutil.virtual_memory()
-    onedata = {}
+    # global  dtimelist
+    # global valuelist
     global vmdatadata2
-    dtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    onedata[dtime] = vm.percent
+    onedata = {}
+    # dtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S") 年月日时分秒
+    dtime = datetime.now().strftime("%H:%M:%S") #只有时分秒
+    onedata["datetime"] = dtime
+    onedata["memo_percent"] = vm.percent
+    onedata["memo_used"] = round(vm.used/1024/1024,2)
+    onedata["memo_free"] = round(vm.free/1024/1024,2)
+    onedata["memo_available"] = round(vm.available/1024/1024,2)
     if len(vmdatadata2) < 10:
-        vmdatadata2.append(vm.percent)
+        vmdatadata2.append(onedata)
     else:
         vmdatadata2 = vmdatadata2[1:]
-        vmdatadata2.append(vm.percent)
+        vmdatadata2.append(onedata)
     # print(vmdatadata2)
     global timer
     timer=Timer(1,get_memo)
