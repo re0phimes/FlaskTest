@@ -54,7 +54,9 @@
 		</div>
 	</div>
 </div>
-<button class="btn btn-primary">get newdata</button>
+<button class="btn btn-primary" id="getData">get newdata</button>
+
+<button class="btn btn-primary" id="stopData">stop data</button>
 {% endblock %}
 
 {% block script_bot %}
@@ -71,7 +73,7 @@ bchart.resize();
 
 <!-- 设置方法 -->
 
-var autoupdate = setInterval(
+
 function fetchData() {
 	$.ajax({
 		type:"GET",
@@ -120,11 +122,24 @@ function fetchData() {
 
 		} <!-- success的部分 -->
 	})
-}, 1000);
+}
+
+<!-- var autoupdate = self.startData(); -->
+var autoID = 0;
+
+window.onload = function(){
+	autoID = setInterval(fetchData,1000)
+}
 
 $(function(){
-	$("button").click(function(){
-		clearInterval(autoupdate)
+	$("#getData").click(function(){
+		autoID = setInterval(fetchData,1000)
 	});
+})
+
+$(function(){
+	$("#stopData").click(function(){
+		clearInterval(autoID)
+	})
 })
 {% endblock %}
