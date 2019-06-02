@@ -54,6 +54,12 @@
 		</div>
 	</div>
 </div>
+<div class="container">
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(procForm) }}
+
+</div>
+
 <button class="btn btn-primary" id="getData">get newdata</button>
 
 <button class="btn btn-primary" id="stopData">stop data</button>
@@ -72,6 +78,21 @@ bchart.resize();
 <!-- 设置option内容 -->
 
 <!-- 设置方法 -->
+function getyaxis(){
+    $.ajax({
+        type:"GET",
+		url:"http://127.0.0.1:5000/tableviews/testdata/",
+		dataType:'json',
+		success:function(result){
+            datalen = result["data"].length;
+            var vm_total = result["data"][0]["memo_total"];
+            bchart.setOption({
+                yAxis:[{
+					min:0,
+                    max:vm_total
+				}]
+            })
+        }})}
 
 
 function fetchData() {
@@ -85,7 +106,7 @@ function fetchData() {
 			var vm_used = new Array();
 			var vm_available = new Array();
 			var vm_free = new Array();
-			for (i=0; i<result["data"].length;i++ )
+			for (i=0; i<result["data"].length-1;i++ )
 			{
 				vm_datetime.push(result["data"][i]["datetime"]);
 				vm_percent.push(result["data"][i]["memo_percent"]);
@@ -128,7 +149,8 @@ function fetchData() {
 var autoID = 0;
 
 window.onload = function(){
-	autoID = setInterval(fetchData,1000)
+	autoID = setInterval(fetchData,1000);
+    getyaxis();
 }
 
 $(function(){

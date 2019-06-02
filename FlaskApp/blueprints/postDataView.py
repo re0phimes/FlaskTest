@@ -9,7 +9,7 @@ from models import ceshi, memory, PCmemory
 from getPCmemory import getMemory
 from threading import Timer
 import getPCmemory
-
+from forms import ProcessForm
 
 
 postdata_bp = Blueprint('tableviews',__name__)
@@ -19,7 +19,6 @@ postdata_bp = Blueprint('tableviews',__name__)
 def queryData():
 
         a = PCmemory.query.all()
-        
         page=request.args.get('page',1,type=int)
         taskpagenation = PCmemory.query.order_by(PCmemory.index.desc()).paginate(page,per_page=4,error_out=False)
         queryItems = taskpagenation.items
@@ -32,6 +31,7 @@ def queryData():
     
 @postdata_bp.route("/charts/", methods=['POST','GET'])
 def visulizeData():
+    procForm = ProcessForm()
     a = PCmemory.query.all()
     # columnNameList = []
     page=request.args.get('page',1,type=int)
@@ -48,7 +48,6 @@ def visulizeData():
             xaxis.append(line.timeStamp)
     v11 = []
     v22 = []
-    print(v11)
     for i in v1:
         i = i.replace("MB","")
         # print(i)
@@ -63,14 +62,14 @@ def visulizeData():
         .add_yaxis("memo_used",v11)
         .add_yaxis("memo_free",v22)
         .add_yaxis("memo_available", v22)
-        .set_global_opts(title_opts=opts.TitleOpts(title="Bar-基本示例", subtitle="我是副标题")))
+        .set_global_opts(title_opts=opts.TitleOpts(title="内存柱形图", subtitle="使用、未使用")))
     linechart = (
         Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
         .add_yaxis("memory percent",v11)
         .add_yaxis("第二条",v22)
-        .set_global_opts(title_opts=opts.TitleOpts(title="linechart", subtitle="onlyfordisplay")))
-    return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id)
+        .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))
+    return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id, procForm=procForm)
 
 
 @postdata_bp.route("/testdata/", methods=['GET'])

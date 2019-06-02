@@ -101,6 +101,7 @@ def get_memo():
     onedata["memo_used"] = round(vm.used/1024/1024,2)
     onedata["memo_free"] = round(vm.free/1024/1024,2)
     onedata["memo_available"] = round(vm.available/1024/1024,2)
+    onedata["memo_total"] = round(vm.total/1024/1024,2)
     if len(vmdatadata2) < 10:
         vmdatadata2.append(onedata)
     else:
@@ -114,3 +115,13 @@ def get_memo():
 timer = Timer(1,get_memo)
 timer.start()
 time.sleep(1)
+#-----------------------------------下面为单个程序的CPU、内存数据方法--------------
+def one_process_memo():
+    proc = psutil.pids()
+    print(type(proc))
+    proclist = []
+    for a in proc:
+        # print(a)
+        proclist.append((psutil.Process(a).name(),psutil.Process(a).name()))
+    print(proclist)
+    return proclist
