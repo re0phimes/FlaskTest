@@ -2,20 +2,9 @@ from threading import Timer
 import time
 import psutil
 from datetime import datetime
-
-datalist = []
-vmdatadata2 = []
-
-
-def one_process_memo():
-    proc = psutil.pids()
-    print(type(proc))
-    proclist = []
-    for a in proc:
-        # print(a)
-        proclist.append((psutil.Process(a).name(),psutil.Process(a).name()))
-    print(proclist)
-    return proclist
+from forms import ProcessForm
+from getPCmemory import one_process_memo
 
 
-one_process_memo()
+myform = ProcessForm()
+myform.processName.choice = one_process_memo()

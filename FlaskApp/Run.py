@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect
+from flask_cors import *
 from flask_debugtoolbar import DebugToolbarExtension
 from extensions import bootstrp, db
 from flask_bootstrap import Bootstrap
@@ -8,6 +9,7 @@ import os
 
 
 app = Flask(__name__)
+CORS(app, resources=r'/*')
 Bootstrap(app)
 db.init_app(app)
 toolbar = DebugToolbarExtension(app)

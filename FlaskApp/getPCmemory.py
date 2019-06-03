@@ -118,10 +118,8 @@ time.sleep(1)
 #-----------------------------------下面为单个程序的CPU、内存数据方法--------------
 def one_process_memo():
     proc = psutil.pids()
-    print(type(proc))
     proclist = []
     for a in proc:
         # print(a)
         proclist.append((psutil.Process(a).name(),psutil.Process(a).name()))
-    print(proclist)
     return proclist

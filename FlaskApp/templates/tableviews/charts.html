@@ -64,7 +64,7 @@
 
 <button class="btn btn-primary" id="stopData">stop data</button>
 {% endblock %}
-
+//--------------------------------------------------------------------------
 {% block script_bot %}
 {{ super() }}
 lchart = eval({{ linechartid }})
@@ -81,7 +81,7 @@ bchart.resize();
 function getyaxis(){
     $.ajax({
         type:"GET",
-		url:"http://127.0.0.1:5000/tableviews/testdata/",
+		url:"/tableviews/testdata/",
 		dataType:'json',
 		success:function(result){
             datalen = result["data"].length;
@@ -98,7 +98,7 @@ function getyaxis(){
 function fetchData() {
 	$.ajax({
 		type:"GET",
-		url:"http://127.0.0.1:5000/tableviews/testdata/",
+		url:"/tableviews/testdata/",
 		dataType:'json',
 		success:function(result){
 			var vm_datetime = new Array();
@@ -106,7 +106,7 @@ function fetchData() {
 			var vm_used = new Array();
 			var vm_available = new Array();
 			var vm_free = new Array();
-			for (i=0; i<result["data"].length-1;i++ )
+			for (i=0; i<result["data"].length-1; i++ )
 			{
 				vm_datetime.push(result["data"][i]["datetime"]);
 				vm_percent.push(result["data"][i]["memo_percent"]);

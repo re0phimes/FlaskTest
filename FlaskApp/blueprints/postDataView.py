@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template, request, flash, current_app
+from flask import Blueprint,render_template, request, flash, current_app, make_response, Response
 from jinja2 import Markup
 import os, json
 from models import ceshi
@@ -6,7 +6,7 @@ from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
-from getPCmemory import getMemory
+from getPCmemory import getMemory, one_process_memo
 from threading import Timer
 import getPCmemory
 from forms import ProcessForm
@@ -32,6 +32,7 @@ def queryData():
 @postdata_bp.route("/charts/", methods=['POST','GET'])
 def visulizeData():
     procForm = ProcessForm()
+    procForm.processName.choices = one_process_memo()
     a = PCmemory.query.all()
     # columnNameList = []
     page=request.args.get('page',1,type=int)
@@ -72,10 +73,8 @@ def visulizeData():
     return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id, procForm=procForm)
 
 
-@postdata_bp.route("/testdata/", methods=['GET'])
+@postdata_bp.route("/testdata/", methods=['GET','POST'])
 def getdata():
     finaldata ={}
-    timer = Timer(1,getPCmemory.get_memo)
-    # print(getPCmemory.vmdatadata2)
     finaldata["data"]=getPCmemory.vmdatadata2
     return json.dumps(finaldata)
