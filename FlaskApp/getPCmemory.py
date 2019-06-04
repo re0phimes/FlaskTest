@@ -121,5 +121,6 @@ def one_process_memo():
     proclist = []
     for a in proc:
         # print(a)
-        proclist.append((psutil.Process(a).name(),psutil.Process(a).name()))
+        s = psutil.Process(a).name()
+        proclist.append((a,a))
     return proclist
