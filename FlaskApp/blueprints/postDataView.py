@@ -60,17 +60,29 @@ def visulizeData():
     barchart = (
         Bar(init_opts=opts.InitOpts(theme=ThemeType.WESTEROS,width= "",height= "300px"))
         .add_xaxis(xaxis)
-        .add_yaxis("memo_used",v11)
-        .add_yaxis("memo_free",v22)
-        .add_yaxis("memo_available", v22)
-        .set_global_opts(title_opts=opts.TitleOpts(title="内存柱形图", subtitle="使用、未使用")))
+        .add_yaxis("memo_used",v11,stack="1",color="dark")
+        .add_yaxis("memo_available", v22,stack="1",color="dark")
+        .extend_axis(
+            yaxis=opts.AxisOpts(
+                axislabel_opts=opts.LabelOpts(formatter="{value} %"), interval=20, min_=0, max_=100
+            )
+        )
+        .set_global_opts(title_opts=opts.TitleOpts(title="内存柱形图", subtitle="使用、未使用"),legend_opts=opts.LegendOpts(type_="plain"),yaxis_opts=opts.AxisOpts(type_="value",name_location="end"))
+        .set_series_opts(label_opts=opts.LabelOpts(position="insideBottomLeft")));
+
     linechart = (
         Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
         .add_yaxis("memory percent",v11)
         .add_yaxis("第二条",v22)
         .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))
+    
+    barchart.overlap(linechart)
+
     return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id, procForm=procForm)
+
+
+
 
 
 @postdata_bp.route("/testdata/", methods=['GET','POST'])

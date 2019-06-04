@@ -63,6 +63,7 @@
 <button class="btn btn-primary" id="getData">get newdata</button>
 
 <button class="btn btn-primary" id="stopData">stop data</button>
+{{overlap|safe}}
 {% endblock %}
 //--------------------------------------------------------------------------
 {% block script_bot %}
@@ -105,14 +106,14 @@ function fetchData() {
 			var vm_percent = new Array();
 			var vm_used = new Array();
 			var vm_available = new Array();
-			var vm_free = new Array();
+<!-- 			var vm_free = new Array(); -->
 			for (i=0; i<result["data"].length-1; i++ )
 			{
 				vm_datetime.push(result["data"][i]["datetime"]);
 				vm_percent.push(result["data"][i]["memo_percent"]);
 				vm_used.push(result["data"][i]["memo_used"]);
 				vm_available.push(result["data"][i]["memo_available"]);
-				vm_free.push(result["data"][i]["memo_free"]);
+				<!-- vm_free.push(result["data"][i]["memo_free"]); -->
 			}
 			
 			lchart.setOption({
@@ -131,10 +132,11 @@ function fetchData() {
 				{
 					name:"memo_available",
 					data:vm_available
-				},
-				{
-					name:"memo_free",
-					data:vm_free,
+				}],
+				[{
+					name:"memory percent",
+					type:"line",
+					data:vm_percent
 				}],
 				xAxis:[{
 					data:vm_datetime
