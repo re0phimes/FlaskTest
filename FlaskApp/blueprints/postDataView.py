@@ -60,8 +60,8 @@ def visulizeData():
     barchart = (
         Bar(init_opts=opts.InitOpts(theme=ThemeType.WONDERLAND,width= "",height= "300px"))
         .add_xaxis(xaxis)
-        .add_yaxis("memo_used",v11,stack="1",color="dark")
-        .add_yaxis("memo_available", v22,stack="1",color="dark")
+        .add_yaxis("memo_used",v11,color="dark")
+        .add_yaxis("memo_available", v22,color="dark")
         # .add_yaxis("memory percent", v11,yaxis_index=1)
         .extend_axis(
             yaxis=opts.AxisOpts(
@@ -69,12 +69,13 @@ def visulizeData():
             )
         )
         .set_global_opts(title_opts=opts.TitleOpts(title="内存柱形图", subtitle="使用、未使用"),legend_opts=opts.LegendOpts(type_="plain"),yaxis_opts=opts.AxisOpts(type_="value",name_location="end"))
-        .set_series_opts(label_opts=opts.LabelOpts(position="insideBottomLeft")));
+        .set_series_opts(label_opts=opts.LabelOpts(position="insideTopLeft")));
 
     linechart = (
-        Line(init_opts=opts.InitOpts(theme=ThemeType.CHALK,width= "auto",height= "300px"))
+        Line(init_opts=opts.InitOpts(theme=ThemeType.WONDERLAND,width= "auto",height= "300px"))
         .add_xaxis(xaxis)
         .add_yaxis("memory percent",v11)
+        .add_yaxis("cpu percent",v11)
         .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))
     
     barchart.overlap(linechart)

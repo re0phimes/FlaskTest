@@ -40,6 +40,7 @@ class getMemory:
             memo["used"] = str(round(psutil.virtual_memory().used / 1024 / 1024, 3)) + "MB"
             memo["free"] = str(round(psutil.virtual_memory().free / 1024 / 1024, 3)) + "MB"
             timeStamp = str(datetime.now().strftime('%Y-%M-%d %H:%m:%S'))
+
             memoryList = []
             memoryList.append(timeStamp)
             for value in memo.values():
@@ -102,6 +103,7 @@ def get_memo():
     onedata["memo_free"] = round(vm.free/1024/1024,2)
     onedata["memo_available"] = round(vm.available/1024/1024,2)
     onedata["memo_total"] = round(vm.total/1024/1024,2)
+    onedata["cpu_percent"] = str(psutil.cpu_percent())
     if len(vmdatadata2) < 10:
         vmdatadata2.append(onedata)
     else:
@@ -122,5 +124,5 @@ def one_process_memo():
     for a in proc:
         # print(a)
         s = psutil.Process(a).name()
-        proclist.append((a,a))
+        proclist.append((s,"pid:" + str(a) + " processName:" + s))
     return proclist

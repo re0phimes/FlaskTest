@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+<!-- 		<div class="row">
 			<div class="col-md-12">
 				<div class="card card-default">
 					<div class="card-header">
@@ -51,7 +51,7 @@
     </script>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 <div class="container">
@@ -68,12 +68,12 @@
 //--------------------------------------------------------------------------
 {% block script_bot %}
 {{ super() }}
-lchart = eval({{ linechartid }})
+// lchart = eval({{ linechartid }})
 bchart = eval({{ barchartid }})
 window.onresize = function () {
 //重置容器高宽
 
-lchart.resize();
+// lchart.resize();
 bchart.resize();
 };
 <!-- 设置option内容 -->
@@ -106,24 +106,26 @@ function fetchData() {
 			var vm_percent = new Array();
 			var vm_used = new Array();
 			var vm_available = new Array();
-<!-- 			var vm_free = new Array(); -->
+			var cpu_percent = new Array();
+ 			// var vm_free = new Array();
 			for (i=0; i<result["data"].length-1; i++ )
 			{
 				vm_datetime.push(result["data"][i]["datetime"]);
 				vm_percent.push(result["data"][i]["memo_percent"]);
 				vm_used.push(result["data"][i]["memo_used"]);
 				vm_available.push(result["data"][i]["memo_available"]);
+				cpu_percent.push(result["data"][i]["cpu_percent"])
 				<!-- vm_free.push(result["data"][i]["memo_free"]); -->
 			}
 			
-			lchart.setOption({
-				series:[{
-					data:vm_percent
-				}],
-				xAxis:[{
-					data:vm_datetime
-				}]
-			})  <!-- 这里结束了lchart的数据 -->
+ 		// 	lchart.setOption({
+			// 	series:[{
+			// 		data:vm_percent
+			// 	}],
+			// 	xAxis:[{
+			// 		data:vm_datetime
+			// 	}]
+			// }) <!-- 这里结束了lchart的数据 -->
 			bchart.setOption({
 				series:[{
 					name:"memo_used",
@@ -138,6 +140,15 @@ function fetchData() {
 					type:"line",
 					data:vm_percent,
 					yAxisIndex:1
+				},
+				{
+					name:"cpu percent",
+					type:"line",
+					data:cpu_percent,
+					yAxisIndex:1,
+					label:{
+					position:"top"	
+					}
 				}],
 				xAxis:[{
 					data:vm_datetime
