@@ -2,9 +2,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, PasswordField, DateTimeField
 from wtforms.validators import DataRequired
 from datetime import datetime, timedelta
-from getPCmemory import one_process_memo
+from getPCmemory import process_list
 
-processlist = one_process_memo()
+processlist = process_list()
 
 class QueryForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(message='name cannot be empty')], render_kw={'placeholder':'Data'})
@@ -28,4 +28,4 @@ class DBForm(FlaskForm):
         submit = SubmitField("connect")
 
 class ProcessForm(FlaskForm):
-        processName = SelectField('Process', choices=processlist)
+        processName = SelectField('Select Your Process', choices=processlist)

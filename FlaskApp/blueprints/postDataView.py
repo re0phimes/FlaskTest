@@ -6,7 +6,7 @@ from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
-from getPCmemory import getMemory, one_process_memo
+from getPCmemory import getMemory, process_list
 from threading import Timer
 import getPCmemory
 from forms import ProcessForm
@@ -32,7 +32,7 @@ def queryData():
 @postdata_bp.route("/charts/", methods=['POST','GET'])
 def visulizeData():
     procForm = ProcessForm()
-    procForm.processName.choices = one_process_memo()
+    procForm.processName.choices = process_list()
     a = PCmemory.query.all()
     # columnNameList = []
     page=request.args.get('page',1,type=int)
@@ -86,8 +86,3 @@ def visulizeData():
 
 
 
-@postdata_bp.route("/testdata/", methods=['GET','POST'])
-def getdata():
-    finaldata ={}
-    finaldata["data"]=getPCmemory.vmdatadata2
-    return json.dumps(finaldata)

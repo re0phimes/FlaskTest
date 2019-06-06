@@ -118,7 +118,7 @@ timer = Timer(1,get_memo)
 timer.start()
 time.sleep(1)
 #-----------------------------------下面为单个程序的CPU、内存数据方法--------------
-def one_process_memo():
+def process_list():
     proc = psutil.pids()
     proclist = []
     for a in proc:
@@ -126,3 +126,13 @@ def one_process_memo():
         s = psutil.Process(a).name()
         proclist.append((s,"pid:" + str(a) + " processName:" + s))
     return proclist
+
+"""
+获取一个进程的数据
+"""
+def get_process_memo(pid):
+    proc_data = psutil.Process(pid)
+    print(proc_data.cpu_percent())
+
+
+get_process_memo(6900)
