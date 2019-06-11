@@ -23,7 +23,7 @@ cpudic["percentage"] = psutil.cpu_percent()
 dtimelist = []
 valuelist = []
 vmdatadata2 = []
-
+processDataList = []
 
 class getMemory:
 
@@ -119,20 +119,40 @@ timer.start()
 time.sleep(1)
 #-----------------------------------下面为单个程序的CPU、内存数据方法--------------
 def process_list():
-    proc = psutil.pids()
+    procs = psutil.pids()
     proclist = []
-    for a in proc:
+    for aPid in procs:
         # print(a)
-        s = psutil.Process(a).name()
-        proclist.append((s,"pid:" + str(a) + " processName:" + s))
+        proc_data = {}
+        aProcName = psutil.Process(aPid).name()
+        proc_data[aProcName] = aPid
+        proclist.append(proc_data)
     return proclist
 
 """
 获取一个进程的数据
 """
-def get_process_memo(pid):
-    proc_data = psutil.Process(pid)
-    print(proc_data.cpu_percent())
+def get_one_process(proc_name):
+    proclist = process_list()
+    for i, oneProc in enumerate(proclist):
+        oneProcData = {}
+        if oneProc.keys() == proc_name:
+            oneProcData["cpu_percent"] = psutil.Process(oneProc.values).cpu_percent
+            oneProcData["memo_used"] = round(psutil.Process(oneProc.values).memory_info/1024/1024,2)
+            oneProcData["memo_percent"] = round(psutil.Process(oneProc.values).memory_percent/1024/1024,2)
+            if len(processDataList) < 10:
+                processDataList.append(oneProcData)
+            else:
+                processDataList = processDataList[1:]
+                processDataList.append(oneProcData)
+            global timer2
+            timer2.Timer(1,get_one_process)
+            timer2.append(oneProcData)
+        if i == len(proclist) & oneProc.keys() != proc_name:
+            print("no such process")    
 
 
-get_process_memo(6900)
+def timer_switch(proc_namehat):
+    timer2.Timer(1,get_one_process,proc_namehat)
+    timer2.start()
+    time.sleep(1)

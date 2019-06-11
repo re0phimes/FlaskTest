@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}<title>ChartPage</title>{% endblock %}
+{% block scripts %}
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+{% endblock %}
+{% block page_content %}
+
+
+<div id="content-wrapper">
+	<div id="current_page">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active"><a href="/tableviews/oneProcess/">oneProcess</a></li>
+		</ol>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card card-default">
+					<div class="card-header">
+						<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+						Bar Chart
+					</div>
+					<div class="card-body">
+						<div id="bar">
+							{{ barchart|safe }}
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="container-fluid">
+							<button class="btn btn-primary" id="getData"><i class="fa fa-cog fa-spin"></i>get newdata</button>
+
+							<button class="btn btn-primary" id="stopData"><i class="fa fa-cog fa-spin"></i>stop data</button>
+						</div>	
+					</div>	
+				</div>
+			</div>
+		</div>
+		<br/>
+	</div>
+</div>
+<div class="container">
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(procForm) }}
+</div>
+{% endblock %}
+//--------------------------------------------------------------------------
+

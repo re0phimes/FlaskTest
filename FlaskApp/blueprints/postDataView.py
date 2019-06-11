@@ -84,5 +84,11 @@ def visulizeData():
 
 
 
-
-
+@postdata_bp.route("/oneProcess/", methods=['POST','GET'])
+def getOneProcess():
+    if request.method == "GET":
+        procForm = ProcessForm()
+        procForm.processName.choices = process_list()
+        return render_template("tableviews/one_proc_chart.html",procForm=procForm)
+    if request.method == "POST":
+        request.args.get()
