@@ -27,3 +27,11 @@ def getdata():
     finaldata ={}
     finaldata["data"]=getPCmemory.vmdatadata2
     return json.dumps(finaldata)
+
+
+
+@ajaxdata_bp.route("/processData/", methods=['GET','POST'])
+def get_process_status():
+    process_data ={}
+    process_data["data"]=getPCmemory.processDataList
+    return json.dumps(process_data)

@@ -132,26 +132,32 @@ def process_list():
 获取一个进程的数据
 """
 def get_one_process(proc_name):
+    global processDataList
+    print(proc_name)
     proclist = process_list()
+    oneProcData = {}
     for i, oneProc in enumerate(proclist):
-        oneProcData = {}
-        if oneProc.keys() == proc_name:
-            oneProcData["cpu_percent"] = psutil.Process(oneProc.values).cpu_percent
-            oneProcData["memo_used"] = round(psutil.Process(oneProc.values).memory_info/1024/1024,2)
-            oneProcData["memo_percent"] = round(psutil.Process(oneProc.values).memory_percent/1024/1024,2)
+        print("oneProc" + str(oneProc[0]))
+        if str(oneProc[0]) == str(proc_name):
+            print(type(proc_name))
+            dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
+            oneProcData["datetime"] = dtime
+            oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
+            oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
+            oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
             if len(processDataList) < 10:
                 processDataList.append(oneProcData)
             else:
                 processDataList = processDataList[1:]
                 processDataList.append(oneProcData)
             global timer2
-            timer2.Timer(1,get_one_process)
-            timer2.append(oneProcData)
-        if i == len(proclist) & oneProc.keys() != proc_name:
+            timer2 = Timer(1,get_one_process, proc_name)
+            timer2.start()
+        if i == len(proclist) & oneProc[0] != proc_name:
             print("no such process")    
 
 
 def timer_switch(proc_namehat):
-    timer2.Timer(1,get_one_process,proc_namehat)
+    timer2 = Timer(1,get_one_process,proc_namehat)
     timer2.start()
     time.sleep(1)

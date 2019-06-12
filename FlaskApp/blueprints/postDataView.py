@@ -6,7 +6,7 @@ from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
-from getPCmemory import getMemory, process_list
+from getPCmemory import getMemory, process_list, timer_switch
 from threading import Timer
 import getPCmemory
 from forms import ProcessForm
@@ -93,3 +93,4 @@ def getOneProcess():
     if request.method == "POST":
         procdata = request.form.get('processName',type=str,default='InRun.exe')
         timer_switch(procdata)
+        return "aaa"
