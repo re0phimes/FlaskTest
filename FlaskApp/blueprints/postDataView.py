@@ -91,4 +91,5 @@ def getOneProcess():
         procForm.processName.choices = process_list()
         return render_template("tableviews/one_proc_chart.html",procForm=procForm)
     if request.method == "POST":
-        request.args.get()
+        procdata = request.form.get('processName',type=str,default='InRun.exe')
+        timer_switch(procdata)

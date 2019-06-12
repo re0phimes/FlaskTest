@@ -123,9 +123,8 @@ def process_list():
     proclist = []
     for aPid in procs:
         # print(a)
-        proc_data = {}
         aProcName = psutil.Process(aPid).name()
-        proc_data[aProcName] = aPid
+        proc_data = (aPid, aProcName)
         proclist.append(proc_data)
     return proclist
 
