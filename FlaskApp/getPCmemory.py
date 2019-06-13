@@ -160,4 +160,3 @@ def get_one_process(proc_name):
 def timer_switch(proc_namehat):
     timer2 = Timer(1,get_one_process,proc_namehat)
     timer2.start()
-    time.sleep(1)

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}<title>ChartPage</title>{% endblock %}
+{% block title %}<title>ProcessPage</title>{% endblock %}
 {% block scripts %}
 <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
@@ -25,7 +25,7 @@
 					</div>
 					<div class="card-body">
 						<div id="bar">
-							{{ barchart|safe }}
+							{{ barchart2|safe }}
 						</div>
 					</div>
 					<div class="card-footer">
@@ -48,3 +48,63 @@
 {% endblock %}
 //--------------------------------------------------------------------------
 
+{% block script_bot %}
+{{ super() }}
+bchart2 = eval({{ barchart2id }})
+
+function fetchProcessData() {
+	$.ajax({
+		type:"GET",
+		url:"/ajaxdata/processData/",
+		dataType:'json',
+		success:function(result){
+			var proc_datetime = new Array();
+			var porc_memo_rss = new Array();
+			var proc_memo_percent = new Array();
+			var proc_cpu_percent = new Array();
+			for (i=0; i<result["data"].length-1; i++ )
+			{
+				proc_datetime.push(result["data"][i]["datetime"]);
+				porc_memo_rss.push(result["data"][i]["memo_used"]);
+				proc_memo_percent.push(result["data"][i]["memo_percent"]);
+				proc_cpu_percent.push(result["data"][i]["cpu_percent"]);
+			}
+			bchart2.setOption({
+				series:[{
+					name:"porc_memo_rss",
+					data:porc_memo_rss
+				},
+				{
+					name:"proc_memo_percent",
+					type:"line",
+					data:proc_memo_percent,
+					yAxisIndex:1
+				},
+				{
+					name:"proc_cpu_percent",
+					type:"line",
+					data:proc_cpu_percent,
+					yAxisIndex:1,
+					label:{
+					position:"top"	
+					}
+				}],
+				xAxis:[{
+					data:proc_datetime
+				}]
+			})
+
+		} <!-- success的部分 -->
+	})
+}
+
+
+
+
+
+$(function(){
+	$("#getData").click(function(){
+		processAjaxId = setInterval(fetchProcessData,1000)
+	});
+})
+{% endblock %}
