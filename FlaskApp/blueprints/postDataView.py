@@ -108,7 +108,7 @@ def getOneProcess():
         .add_yaxis("memory percent",[1,2,3,4,5,6,7,8,9,10])
         .add_yaxis("cpu percent",[1,2,3,4,5,6,7,8,9,10])
         .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))   
-    # barchart2.overlap(linechart2)
+    barchart2.overlap(linechart2)
     normal_page = make_response(render_template("tableviews/one_proc_chart.html",procForm=procForm,barchart2=Markup(barchart2.render_embed()),barchart2id="chart_" + barchart2.chart_id))
     # different request methods------------------------------------
     if request.method == "GET":

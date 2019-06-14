@@ -133,28 +133,29 @@ def process_list():
 """
 def get_one_process(proc_name):
     global processDataList
-    print(proc_name)
+    # print(proc_name)
     proclist = process_list()
     oneProcData = {}
-    for i, oneProc in enumerate(proclist):
-        print("oneProc" + str(oneProc[0]))
-        if str(oneProc[0]) == str(proc_name):
-            print(type(proc_name))
-            dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
-            oneProcData["datetime"] = dtime
-            oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
-            oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
-            oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
-            if len(processDataList) < 10:
-                processDataList.append(oneProcData)
-            else:
-                processDataList = processDataList[1:]
-                processDataList.append(oneProcData)
-            global timer2
-            timer2 = Timer(1,get_one_process, proc_name)
-            timer2.start()
-        if i == len(proclist) & oneProc[0] != proc_name:
-            print("no such process")    
+    print(proc_name)
+    print(type(psutil.pids()))
+    if int(proc_name) in psutil.pids():
+        dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
+        oneProcData["datetime"] = dtime
+        oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
+        oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
+        oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
+        if len(processDataList) < 10:
+            processDataList.append(oneProcData)
+        else:
+            processDataList = processDataList[1:]
+            processDataList.append(oneProcData)
+        print(processDataList)
+        global timer2
+        timer2 = Timer(1,get_one_process, proc_name)
+        timer2.start()
+    else:
+        print("no such process")
+    
 
 
 def timer_switch(proc_namehat):

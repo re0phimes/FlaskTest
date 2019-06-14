@@ -70,13 +70,10 @@ function fetchProcessData() {
 				proc_cpu_percent.push(result["data"][i]["cpu_percent"]);
 			}
 			bchart2.setOption({
-				series:[{
-					name:"porc_memo_rss",
-					data:porc_memo_rss
-				},
+				series:[
 				{
 					name:"proc_memo_percent",
-					type:"line",
+					type:"bar",
 					data:proc_memo_percent,
 					yAxisIndex:1
 				},
@@ -88,6 +85,10 @@ function fetchProcessData() {
 					label:{
 					position:"top"	
 					}
+				},
+				{
+					name:"porc_memo_rss",
+					data:porc_memo_rss
 				}],
 				xAxis:[{
 					data:proc_datetime
