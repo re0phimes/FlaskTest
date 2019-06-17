@@ -21,7 +21,7 @@
 				<div class="card card-default">
 					<div class="card-header">
 						<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-						Bar Chart
+						System CPU and Memory Info
 					</div>
 					<div class="card-body">
 						<div id="bar">
@@ -43,18 +43,20 @@
 			<div class="col-md-12">
 				<div class="card card-default">
 					<div class="card-header">
-						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 						{% import "bootstrap/wtf.html" as wtf %}
-							<p>{{ procForm.processName.label}}{{procForm.processName}}</p>
+							<p>{{ wtf.form_field(procForm.processName) }} {{ procForm.submit }}</p>
 					</div>
 					<div class="card-body">
 						<div id="line">
-							{{ linechart|safe }}
+							{{ barchart2|safe }}
 						</div>
 					</div>
-	<script>
-        var lchart = eval({{linechartid}})
-    </script>
+					<div class="card-footer">
+						<div class="container-fluid">
+							<button class="btn btn-primary" id="getData2"><i class="fa fa-cog fa-spin"></i>get newdata</button>
+							<button class="btn btn-primary" id="stopData2"><i class="fa fa-cog fa-spin"></i>stop data</button>
+						</div>	
+					</div>	
 				</div>
 			</div>
 		</div>
@@ -72,6 +74,7 @@
 {{ super() }}
 // lchart = eval({{ linechartid }})
 bchart = eval({{ barchartid }})
+bchart2 = eval({{ barchart2id }})
 window.onresize = function () {
 //重置容器高宽
 
@@ -181,4 +184,64 @@ $(function(){
 		clearInterval(autoID)
 	})
 })
+
+
+function fetchProcessData() {
+	$.ajax({
+		type:"GET",
+		url:"/ajaxdata/processData/",
+		dataType:'json',
+		success:function(result){
+			var proc_datetime = new Array();
+			var porc_memo_rss = new Array();
+			var proc_memo_percent = new Array();
+			var proc_cpu_percent = new Array();
+			for (i=0; i<result["data"].length-1; i++ )
+			{
+				proc_datetime.push(result["data"][i]["datetime"]);
+				porc_memo_rss.push(result["data"][i]["memo_used"]);
+				proc_memo_percent.push(result["data"][i]["memo_percent"]);
+				proc_cpu_percent.push(result["data"][i]["cpu_percent"]);
+			}
+			bchart2.setOption({
+				series:[
+				{
+					name:"proc_memo_percent",
+					type:"line",
+					data:proc_memo_percent,
+					yAxisIndex:1
+				},
+				{
+					name:"proc_cpu_percent",
+					type:"line",
+					data:proc_cpu_percent,
+					yAxisIndex:1,
+					label:{
+					position:"top"	
+					}
+				},
+				{
+					name:"porc_memo_rss",
+					data:porc_memo_rss
+				}],
+				xAxis:[{
+					data:proc_datetime
+				}]
+			})
+
+		} <!-- success的部分 -->
+	})
+}
+
+
+
+
+
+$(function(){
+	$("#submit").click(function(){
+		processAjaxId = setInterval(fetchProcessData,1000)
+	});
+})
+
+
 {% endblock %}

@@ -141,7 +141,7 @@ def get_one_process(proc_name):
             oneProcData["datetime"] = dtime
             oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
             oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
-            oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
+            oneProcData["memo_percent"] = psutil.Process(int(proc_name)).memory_percent()
             if len(processDataList) < 10:
                 processDataList.append(oneProcData)
             else:
@@ -161,18 +161,6 @@ def get_one_process(proc_name):
 
 def timer_switch(proc_name):
     timer2 = Timer(1, get_one_process, [proc_name])
-    timer2.cancel()
-    try:
-        print(timer2)
-        timer2.start()
-        time.sleep(1)
-    except Exception as e:
-        pritn(str(e))
-        raise
-    else:
-        pass
-    finally:
-        pass
-
-
+    timer2.start()
+    time.sleep(1)
 

@@ -68,7 +68,7 @@ def visulizeData():
                 axislabel_opts=opts.LabelOpts(formatter="{value} %"), interval=20, min_=0, max_=100
             )
         )
-        .set_global_opts(title_opts=opts.TitleOpts(title="内存柱形图", subtitle="使用、未使用"),legend_opts=opts.LegendOpts(type_="plain"),yaxis_opts=opts.AxisOpts(type_="value",name_location="end"))
+        .set_global_opts(title_opts=opts.TitleOpts(title="系统能存CPU使用情况"),legend_opts=opts.LegendOpts(type_="plain"),yaxis_opts=opts.AxisOpts(type_="value",name_location="end"))
         .set_series_opts(label_opts=opts.LabelOpts(position="insideTopLeft")));
 
     linechart = (
@@ -79,8 +79,39 @@ def visulizeData():
         .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))
     
     barchart.overlap(linechart)
+    #------------------------------两个图的分割线-------------------------------------#
+    barchart2 = (
+        Bar(init_opts=opts.InitOpts(theme=ThemeType.WONDERLAND,width= "",height= "300px"))
+        .add_xaxis([1,2,3,4,5,6,7,8,9,10])
+        .add_yaxis("porc_memo_rss",[1,2,3,4,5,6,7,8,9,10],color="dark")
+        .add_yaxis("proc_cpu_percent", [1,2,3,4,5,6,7,8,9,10],color="dark")
+        .extend_axis(
+            yaxis=opts.AxisOpts(
+                axislabel_opts=opts.LabelOpts(formatter="{value} %"), interval=20, min_=0, max_=100
+            )
+        )
+        .set_global_opts(title_opts=opts.TitleOpts(title="单进程内存CPU使用情况", subtitle="使用、未使用"),legend_opts=opts.LegendOpts(type_="plain"),yaxis_opts=opts.AxisOpts(type_="value",name_location="end"))
+        .set_series_opts(label_opts=opts.LabelOpts(position="insideTopLeft")));
 
-    return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id, procForm=procForm)
+    linechart2 = (
+        Line(init_opts=opts.InitOpts(theme=ThemeType.WONDERLAND,width= "auto",height= "300px"))
+        .add_xaxis([1,2,3,4,5,6,7,8,9,10])
+        .add_yaxis("proc_memo_percent",[1,2,3,4,5,6,7,8,9,10])
+        .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))   
+    barchart2.overlap(linechart2)
+    normal_page = make_response(render_template("tableviews/charts.html",procForm=procForm,barchart2=Markup(barchart2.render_embed()),barchart2id="chart_" + barchart2.chart_id,barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id))
+    if request.method == "GET":
+        return normal_page
+    if request.method == "POST" and procForm.submit.data:
+        try:
+            procdata = request.form.get('processName',type=str,default='InRun.exe')
+            timer_switch(procdata)
+            return normal_page
+        except Exception as e:
+            print(procdata)
+            print(str(e))
+            return str(procdata)
+    # return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id, procForm=procForm)
 
 
 
