@@ -14,19 +14,22 @@ class QueryForm(FlaskForm):
 
 
 class DBForm(FlaskForm):
-        DBType = SelectField('DataBaseType', choices=[('mysql','MySql'),('sqlserver','SqlServer'),('posgresql','PosgreSQL')])
-        username = StringField('username', validators=[DataRequired(message='username cannot be empty')],
-                             render_kw={'placeholder': 'root'}, default='root')
-        password = PasswordField('password', validators=[DataRequired(message='password cannot be empty')],
-                             render_kw={'placeholder': 'enter your password here'}, default='123456')
-        host = StringField('host/IP address', validators=[DataRequired(message='host cannot be empty')],
-                             render_kw={'placeholder': 'localhost'},default='localhost')
-        port = StringField('PORT', validators=[DataRequired(message='port cannot be empty')],
-                             render_kw={'placeholder': '3306'},default='3306')
-        DBname = StringField('DBname', render_kw={'placeholder':'Test'},default='test')
-        Table = StringField('Table', render_kw={'placeholder':'memory'},default='memory')
-        submit = SubmitField("connect")
+    DBType = SelectField('DataBaseType', choices=[('mysql','MySql'),('sqlserver','SqlServer'),('posgresql','PosgreSQL')])
+    username = StringField('username', validators=[DataRequired(message='username cannot be empty')],
+                         render_kw={'placeholder': 'root'}, default='root')
+    password = PasswordField('password', validators=[DataRequired(message='password cannot be empty')],
+                         render_kw={'placeholder': 'enter your password here'}, default='123456')
+    host = StringField('host/IP address', validators=[DataRequired(message='host cannot be empty')],
+                         render_kw={'placeholder': 'localhost'},default='localhost')
+    port = StringField('PORT', validators=[DataRequired(message='port cannot be empty')],
+                         render_kw={'placeholder': '3306'},default='3306')
+    DBname = StringField('DBname', render_kw={'placeholder':'Test'},default='test')
+    Table = StringField('Table', render_kw={'placeholder':'memory'},default='memory')
+    submit = SubmitField("connect")
 
 class ProcessForm(FlaskForm):
-        processName = SelectField('Select Your Process', choices=processlist)
-        submit = SubmitField("getProcess")
+    processName = SelectField('Select Your Process', choices=processlist)
+    submit = SubmitField("getProcess")
+
+class ProcessCancelForm(FlaskForm):
+    submit = SubmitField("CancelTimer")

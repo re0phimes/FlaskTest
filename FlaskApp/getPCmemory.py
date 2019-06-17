@@ -132,32 +132,47 @@ def process_list():
 获取一个进程的数据
 """
 def get_one_process(proc_name):
-    global processDataList
-    # print(proc_name)
-    proclist = process_list()
-    oneProcData = {}
-    print(proc_name)
-    print(type(psutil.pids()))
-    if int(proc_name) in psutil.pids():
-        dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
-        oneProcData["datetime"] = dtime
-        oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
-        oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
-        oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
-        if len(processDataList) < 10:
-            processDataList.append(oneProcData)
+    try:
+        global processDataList
+        # print(proc_name)
+        oneProcData = {}
+        if int(proc_name) in psutil.pids():
+            dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
+            oneProcData["datetime"] = dtime
+            oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
+            oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
+            oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
+            if len(processDataList) < 10:
+                processDataList.append(oneProcData)
+            else:
+                processDataList = processDataList[1:]
+                processDataList.append(oneProcData)
+            # print(processDataList)
         else:
-            processDataList = processDataList[1:]
-            processDataList.append(oneProcData)
-        print(processDataList)
+            print("no such process")
         global timer2
-        timer2 = Timer(1,get_one_process, proc_name)
+        timer2 = Timer(1, get_one_process, [proc_name])
         timer2.start()
-    else:
-        print("no such process")
+    except Exception as e:
+        print(e)
+        print("eror in get_one_process")
     
 
 
-def timer_switch(proc_namehat):
-    timer2 = Timer(1,get_one_process,proc_namehat)
-    timer2.start()
+def timer_switch(proc_name):
+    timer2 = Timer(1, get_one_process, [proc_name])
+    timer2.cancel()
+    try:
+        print(timer2)
+        timer2.start()
+        time.sleep(1)
+    except Exception as e:
+        pritn(str(e))
+        raise
+    else:
+        pass
+    finally:
+        pass
+
+
+

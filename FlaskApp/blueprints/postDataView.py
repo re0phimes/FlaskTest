@@ -92,8 +92,8 @@ def getOneProcess():
     barchart2 = (
         Bar(init_opts=opts.InitOpts(theme=ThemeType.WONDERLAND,width= "",height= "300px"))
         .add_xaxis([1,2,3,4,5,6,7,8,9,10])
-        .add_yaxis("memo_used",[1,2,3,4,5,6,7,8,9,10],color="dark")
-        .add_yaxis("memo_available", [1,2,3,4,5,6,7,8,9,10],color="dark")
+        .add_yaxis("porc_memo_rss",[1,2,3,4,5,6,7,8,9,10],color="dark")
+        .add_yaxis("proc_cpu_percent", [1,2,3,4,5,6,7,8,9,10],color="dark")
         .extend_axis(
             yaxis=opts.AxisOpts(
                 axislabel_opts=opts.LabelOpts(formatter="{value} %"), interval=20, min_=0, max_=100
@@ -105,8 +105,7 @@ def getOneProcess():
     linechart2 = (
         Line(init_opts=opts.InitOpts(theme=ThemeType.WONDERLAND,width= "auto",height= "300px"))
         .add_xaxis([1,2,3,4,5,6,7,8,9,10])
-        .add_yaxis("memory percent",[1,2,3,4,5,6,7,8,9,10])
-        .add_yaxis("cpu percent",[1,2,3,4,5,6,7,8,9,10])
+        .add_yaxis("proc_memo_percent",[1,2,3,4,5,6,7,8,9,10])
         .set_global_opts(title_opts=opts.TitleOpts(title="CPU折线图", subtitle="CPU占用率"),yaxis_opts=opts.AxisOpts(min_=0,max_=100)))   
     barchart2.overlap(linechart2)
     normal_page = make_response(render_template("tableviews/one_proc_chart.html",procForm=procForm,barchart2=Markup(barchart2.render_embed()),barchart2id="chart_" + barchart2.chart_id))
@@ -114,6 +113,11 @@ def getOneProcess():
     if request.method == "GET":
         return normal_page
     if request.method == "POST" and procForm.submit.data:
-        procdata = request.form.get('processName',type=str,default='InRun.exe')
-        timer_switch(procdata)
-        return normal_page
+        try:
+            procdata = request.form.get('processName',type=str,default='InRun.exe')
+            timer_switch(procdata)
+            return normal_page
+        except Exception as e:
+            print(procdata)
+            print(str(e))
+            return str(procdata)
