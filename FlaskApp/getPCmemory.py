@@ -103,7 +103,7 @@ def get_memo():
     onedata["memo_free"] = round(vm.free/1024/1024,2)
     onedata["memo_available"] = round(vm.available/1024/1024,2)
     onedata["memo_total"] = round(vm.total/1024/1024,2)
-    onedata["cpu_percent"] = str(psutil.cpu_percent())
+    onedata["cpu_percent"] = round(psutil.cpu_percent(),2)
     if len(vmdatadata2) < 10:
         vmdatadata2.append(onedata)
     else:
