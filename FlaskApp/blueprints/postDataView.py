@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template, request, flash, current_app, make_response, Response
+from flask import Blueprint,render_template, request, flash, current_app, make_response, Response, jsonify
 from jinja2 import Markup
 import os, json
 from models import ceshi
@@ -6,11 +6,13 @@ from pyecharts.charts import Bar, Line, Page
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
 from models import ceshi, memory, PCmemory
-from getPCmemory import getMemory, process_list, timer_switch
+from getPCmemory import getMemory, process_list, timer_switch, processDataList, get_one_process
 from threading import Timer
+import threading
 import getPCmemory
 from forms import ProcessForm
 
+currentProcess = 0
 
 postdata_bp = Blueprint('tableviews',__name__)
 
@@ -104,13 +106,28 @@ def visulizeData():
         return normal_page
     if request.method == "POST" and procForm.submit.data:
         try:
+            global currentProcess, timer2
             procdata = request.form.get('processName',type=str,default='InRun.exe')
-            timer_switch(procdata)
-            return normal_page
+            if currentProcess == 0:
+                currentProcess = procdata
+                timer2 = Timer(1, get_one_process, [procdata])
+                timer2.start()
+            if (currentProcess != procdata) & (currentProcess != 0):
+                currentProcess = procdata
+                print(timer2)
+                timer2.cancel()
+                # global tiemr2
+                # timer2 = Timer(1, get_one_process, [procdata])
+                # timer2.start()
+            # timer_switch(procdata)
+            return ('', 204) # 正确收到请求，但是不用更新当前网页
         except Exception as e:
             print(procdata)
             print(str(e))
             return str(procdata)
+    if request.method == "POST" and procForm.cancelTimer.data:
+        timer2.cancel()
+        return normal_page
     # return render_template("tableviews/charts.html",barchart=Markup(barchart.render_embed()),linechart=Markup(linechart.render_embed()),linechartid="chart_" + linechart.chart_id, barchartid="chart_" + barchart.chart_id, procForm=procForm)
 
 

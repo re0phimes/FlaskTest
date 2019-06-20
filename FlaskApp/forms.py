@@ -30,6 +30,7 @@ class DBForm(FlaskForm):
 class ProcessForm(FlaskForm):
     processName = SelectField('Select Your Process', choices=processlist)
     submit = SubmitField("getProcess")
+    cancelTimer = SubmitField("cancelTimer")
 
 class ProcessCancelForm(FlaskForm):
     submit = SubmitField("CancelTimer")
