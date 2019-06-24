@@ -1,8 +1,9 @@
 from threading import Timer
-import time
+import time, schedule
 import psutil
 from datetime import datetime
 from forms import ProcessForm
+from getPCmemory import get_one_process
 
 
 processDataList = []
@@ -10,7 +11,7 @@ processDataList = []
 def process_list():
     procs = psutil.pids()
     proclist = []
-    for aPid in procs:
+    for aPid in procs:	
         # print(a)
         aProcName = psutil.Process(aPid).name()
         proc_data = (aPid, aProcName)
@@ -37,9 +38,6 @@ def get_one_process(proc_name):
                 processDataList = processDataList[1:]
                 processDataList.append(oneProcData)
             print(processDataList)
-            global timer2
-            timer2 = Timer(1.0, get_one_process, [proc_name])
-            timer2.start()	
         else:
             print("no such process")
     except Exception as e:
@@ -48,25 +46,10 @@ def get_one_process(proc_name):
 
 
 
-def test_method(proc_name):
-    global processDataList  
-    dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
-    oneProcData = {}
-    oneProcData["datetime"] = dtime
-    oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
-    oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
-    oneProcData["memo_percent"] = round(psutil.Process(int(proc_name)).memory_percent()/1024/1024,2)
-    if len(processDataList) < 10:
-        processDataList.append(oneProcData)
-    else:
-        processDataList = processDataList[1:]
-        processDataList.append(oneProcData)
-    print(processDataList)
-    global timer2
-    timer2 = Timer(1.0, test_method, [proc_name])
-    timer2.start()
+def test_func():
+	schedule.every(1).seconds.do(get_one_process,6700)
+	while True:
+		schedule.run_pending()
 
-# test_method(4968)
-proc_name=4968
-timer2 = Timer(1.0,test_method, [proc_name])
-timer2.start()
+
+test_func()

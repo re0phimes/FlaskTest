@@ -95,6 +95,7 @@ window.onresize = function () {
 
 // lchart.resize();
 bchart.resize();
+bchart2.resize();
 };
 <!-- 设置option内容 -->
 
@@ -182,6 +183,7 @@ function fetchData() {
 
 <!-- var autoupdate = self.startData(); -->
 var autoID = 0;
+var processAjaxId = 0;
 
 window.onload = function(){
 	autoID = setInterval(fetchData,1000);
@@ -254,7 +256,14 @@ function fetchProcessData() {
 
 $(function(){
 	$("#submit").click(function(){
+		try{
+			clearInterval(processAjaxId);
+		}
+		finally
+		{
 			processAjaxId = setInterval(fetchProcessData,1000)
+		}
+		
 		
 	});
 })

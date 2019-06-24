@@ -12,6 +12,7 @@ finalDFList = []
 finalDF = pd.DataFrame(data=None,columns=["timeStamp","total","avai","percent","used","free"])
 # print(finalDF)
 count = 0
+current_pid = 0
 
 cpudic = {}
 cpudic["count"] = psutil.cpu_count()
@@ -133,9 +134,9 @@ def process_list():
 """
 def get_one_process(proc_name):
     try:
-        global processDataList
-        # print(proc_name)
+        global current_pid, processDataList
         oneProcData = {}
+        # print(proc_name)
         if int(proc_name) in psutil.pids():
             dtime = datetime.now().strftime("%H:%M:%S")  # 只有时分秒
             oneProcData["datetime"] = dtime
@@ -147,12 +148,7 @@ def get_one_process(proc_name):
             else:
                 processDataList = processDataList[1:]
                 processDataList.append(oneProcData)
-            # print(processDataList)
-        else:
-            print("no such process")
-        global timer2
-        timer2 = Timer(1, get_one_process, [proc_name])
-        timer2.start()
+        # print(processDataList)
     except Exception as e:
         print(e)
         print("eror in get_one_process")
