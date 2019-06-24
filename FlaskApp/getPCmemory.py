@@ -142,7 +142,7 @@ def get_one_process(proc_name):
             oneProcData["datetime"] = dtime
             oneProcData["cpu_percent"] = psutil.Process(int(proc_name)).cpu_percent()
             oneProcData["memo_used"] = round(psutil.Process(int(proc_name)).memory_info().rss/1024/1024,2)
-            oneProcData["memo_percent"] = psutil.Process(int(proc_name)).memory_percent()
+            oneProcData["memo_percent"] = round(oneProcData["memo_used"] * 100/psutil.virtual_memory().used, 2)
             if len(processDataList) < 10:
                 processDataList.append(oneProcData)
             else:

@@ -8,7 +8,6 @@ class memory(db.Model):
     timestamp = db.Column(db.Integer)
     used = db.Column(db.Integer)
     free = db.Column(db.Integer)
-    # free = db.Column(db.Integer)
 
 
 class InRun_memory(db.Model):

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect
 from flask_cors import *
 from flask_debugtoolbar import DebugToolbarExtension
-from extensions import bootstrp, db
+from extensions import db
 from flask_bootstrap import Bootstrap
 from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
@@ -21,9 +21,9 @@ app.secret_key = 'test secret key'
 
 
 CORS(app, resources=r'/*')
-Bootstrap(app)
 db.init_app(app)
-toolbar = DebugToolbarExtension(app)
+# Bootstrap(app)
+# toolbar = DebugToolbarExtension(app)
 
 
 
