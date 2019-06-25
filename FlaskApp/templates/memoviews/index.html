@@ -38,7 +38,31 @@
 		</div>
 		<div class="col-md-6 column">
 			<h2>连接数据库</h2>
-            {{ wtf.quick_form(dbform) }}
+			<div class="form-group required">
+				{{ dbform.DBType.label(class="control-label") }}
+				{{ dbform.DBType(class="form-control")}}
+			</div>
+			<div class="form-group required">
+				{{ dbform.username.label(class="control-label") }}
+				{{ dbform.username(class="form-control")}}
+			</div>
+			<div class="form-group required">
+				{{ dbform.password.label(class="control-label") }}
+				{{ dbform.password(class="form-control")}}
+			</div>
+			<div class="form-group required">
+				{{ dbform.host.label(class="control-label") }}
+				{{ dbform.port(class="form-control")}}
+			</div>
+			<div class="form-group required">
+				{{ dbform.DBname.label(class="control-label") }}
+				{{ dbform.DBname(class="form-control")}}
+			</div>
+            <div class="form-group required">
+				{{ dbform.Table.label(class="control-label") }}
+				{{ dbform.Table(class="form-control")}}
+			</div>
+			{{ dbform.submit(class="btn btn-primary")}}
 		</div>
 	</div>
 </div>

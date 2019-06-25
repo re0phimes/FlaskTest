@@ -3,7 +3,7 @@ from flask_cors import *
 from flask_debugtoolbar import DebugToolbarExtension
 from extensions import db
 from flask_bootstrap import Bootstrap
-from sqlalchemy import create_engine
+# from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -22,7 +22,7 @@ app.secret_key = 'test secret key'
 
 CORS(app, resources=r'/*')
 db.init_app(app)
-# Bootstrap(app)
+Bootstrap(app)
 # toolbar = DebugToolbarExtension(app)
 
 
