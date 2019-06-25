@@ -41,7 +41,9 @@
 <div class="container">
 </div>
 
-<div class="page-footer">{{ render_pagination(taskpagenation) }} </div>
+<div class="page-footer">
+{{ taskpagenation.iter_pages() }}
+</div>
 
 
 
