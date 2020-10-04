@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e0b5c16-8a80-4560-8061-db29ce61a4d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FlaskApp/templates/memoviews/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FlaskTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FlaskTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskApp/Run.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/Run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskApp/templates/memoviews/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/templates/memoviews/index2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,26 +309,30 @@
     <option name="LAST_COMMIT_MESSAGE" value="完成echart数据显示" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="281" key="GridCell.Tab.0.bottom" timestamp="1601807639310">
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom" timestamp="1601820019687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601807639310" />
-    <state width="1899" height="281" key="GridCell.Tab.0.center" timestamp="1601807639310">
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
+    <state width="1899" height="281" key="GridCell.Tab.0.center" timestamp="1601820019687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601807639310" />
-    <state width="1899" height="281" key="GridCell.Tab.0.left" timestamp="1601807639310">
+    <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
+    <state width="1899" height="281" key="GridCell.Tab.0.left" timestamp="1601820019687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601807639310" />
-    <state width="1899" height="281" key="GridCell.Tab.0.right" timestamp="1601807639310">
+    <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right" timestamp="1601820019687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601807639310" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1601804983787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601804983787" />
+    <state x="663" y="311" key="git4idea.merge.GitPullDialog" timestamp="1601824314153">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="663" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601824314152" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

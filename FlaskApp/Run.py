@@ -14,14 +14,14 @@ app.jinja_env.auto_reload = True
 app.config['TESTING'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:123456@localhost/test'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:123456@localhost/test'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'test secret key'
 
 
 
 CORS(app, resources=r'/*')
-db.init_app(app)
+# db.init_app(app)
 Bootstrap(app)
 # toolbar = DebugToolbarExtension(app)
 
@@ -38,5 +38,5 @@ app.register_blueprint(memoview_bp)
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0',port=5000,debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
 

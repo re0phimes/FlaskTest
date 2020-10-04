@@ -22,11 +22,8 @@
 
 <div class="jumbotron">
 	<div class="container">
-		<h1>九思易测试部测试性能用页面V0.1</h1>
-		<p>该网页用于读取数据库内存数据后，对内存、InRun、InStudio等数据进行展示</p>
-		<p><a class="btn btn-primary btn-lg" role="button">
-			还不知道干嘛用</a>
-		</p>
+		<h1>查IP用</h1>
+		<p>你的IP地址和请求头都会在这里展示</p>
 	</div>
 </div>
 <div class="container">
@@ -37,7 +34,7 @@
 				your remote_addr is : {{ ip }}
 			</div>
 			<div>
-				{{ ip }}
+				your request_header is :{{ request_header }}
 			</div>
 		</div>
 	</div>

@@ -19,7 +19,8 @@ memoview_bp = Blueprint('memo',__name__)
 @memoview_bp.route('/',methods=['GET','POST'])
 def index():
     ip = request.remote_addr
-    return render_template('memoviews/index2.html', ip=ip)
+    request_header = request.headers
+    return render_template('memoviews/index2.html', ip=ip, request_header=request_header)
 
 
 
