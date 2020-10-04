@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}<title>IndexPageTest</title>{% endblock %}
+{% block styles %}
+
+{{super()}}
+<!--<link href="../static/css/styless.css" rel="stylesheet" type="text/css"/>-->
+
+{% endblock %}
+{% block scirpts %}
+    
+{% endblock %}}
+{% block navibar %}
+	{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+		<div id="current_page">
+			<ol class="breadcrumb">
+	  <li class="breadcrumb-item active"><a href="/">Home</a></li>
+	</ol>
+		</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>九思易测试部测试性能用页面V0.1</h1>
+		<p>该网页用于读取数据库内存数据后，对内存、InRun、InStudio等数据进行展示</p>
+		<p><a class="btn btn-primary btn-lg" role="button">
+			还不知道干嘛用</a>
+		</p>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 column">
+			<h2>your IP address</h2>
+			<div>
+				your remote_addr is : {{ ip }}
+			</div>
+			<div>
+				{{ ip }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+

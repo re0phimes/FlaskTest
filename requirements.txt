@@ -1,0 +1,6 @@
+Flask
+flask_cors
+flask_debugtoolbar
+flask_bootstrap
+flask_sqlalchemy
+pyecharts
