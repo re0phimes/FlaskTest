@@ -2,7 +2,7 @@ from flask import Blueprint,render_template, request, flash, get_flashed_message
 # from forms import QueryForm,DBForm
 import pandas as pd
 # from extensions import db
-# from models import User, ceshi, memory #这句不能删，用了eval方法了，所以虽然灰的但是删了就报错
+# from models import User, ceshi, memory #
 import os
 
 
