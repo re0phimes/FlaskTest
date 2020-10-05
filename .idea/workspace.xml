@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e0b5c16-8a80-4560-8061-db29ce61a4d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/FlaskApp/blueprints/get_ip.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlaskApp/templates/get_ip.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskApp/Run.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/Run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlaskApp/templates/memoviews/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/templates/memoviews/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -40,17 +41,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/FlaskApp/templates/memoviews" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Jophi\Documents\GitHub\FlaskTest\FlaskApp\static" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Python Programs\FlaskTest\FlaskApp\templates\memoviews" />
       <recent name="C:\Users\Jophi\Documents\GitHub\FlaskTest\FlaskApp\static\css" />
       <recent name="C:\Users\Jophi\Documents\GitHub\FlaskTest\FlaskApp\templates\tableviews" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Python Programs\FlaskTest\FlaskApp\templates" />
+      <recent name="E:\Python Programs\FlaskTest\FlaskApp\templates\memoviews" />
+      <recent name="C:\Users\Jophi\Documents\GitHub\FlaskTest\FlaskApp\static" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Run">
@@ -280,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559659002904</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="adding header display">
+      <created>1601824449937</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601824449937</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -306,29 +316,42 @@
     <MESSAGE value="auto update" />
     <MESSAGE value="增加按钮主动停止获数据" />
     <MESSAGE value="完成echart数据显示" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成echart数据显示" />
+    <MESSAGE value="adding header display" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding header display" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="281" key="GridCell.Tab.0.bottom" timestamp="1601820019687">
+    <state x="598" y="114" key="CommitChangelistDialog2" timestamp="1601824449090">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
-    <state width="1899" height="281" key="GridCell.Tab.0.center" timestamp="1601820019687">
+    <state x="598" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601824449090" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601825500101">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
-    <state width="1899" height="281" key="GridCell.Tab.0.left" timestamp="1601820019687">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601825500101" />
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom" timestamp="1601910487909">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
-    <state width="1899" height="281" key="GridCell.Tab.0.right" timestamp="1601820019687">
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487909" />
+    <state width="1899" height="281" key="GridCell.Tab.0.center" timestamp="1601910487908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601820019687" />
+    <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487908" />
+    <state width="1899" height="281" key="GridCell.Tab.0.left" timestamp="1601910487908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487908" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right" timestamp="1601910487908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487908" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1601804983787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601804983787" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601824461444">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601824461444" />
     <state x="663" y="311" key="git4idea.merge.GitPullDialog" timestamp="1601824314153">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

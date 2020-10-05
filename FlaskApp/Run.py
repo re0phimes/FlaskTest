@@ -30,9 +30,11 @@ Bootstrap(app)
 
 # from blueprints.postDataView import postdata_bp
 from blueprints.memoviews import memoview_bp
+from blueprints.get_ip import getip_bp
 # from blueprints.ajaxdata import ajaxdata_bp
 
 app.register_blueprint(memoview_bp)
+app.register_blueprint(getip_bp)
 # app.register_blueprint(postdata_bp, url_prefix='/tableviews/')
 # app.register_blueprint(ajaxdata_bp, url_prefix='/ajaxdata/')
 
