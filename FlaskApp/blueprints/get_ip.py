@@ -1,5 +1,13 @@
 from flask import Blueprint,render_template, request
 import json
+from pymongo import MongoClient
+
+
+# setup db
+myclient = MongoClient('180.76.153.244', 27890)
+myclient.admin.authenticate('beihai','yaoduoxiang')
+mydb = myclient['proxy_test']
+mycol = mydb['requests_recored']
 
 getip_bp = Blueprint('get_ip', __name__)
 
@@ -14,4 +22,5 @@ def get_ip():
 def get_process_status():
     ip = request.remote_addr
     request_header = request.headers
+    mycol.insert_one({"ip":ip,"request_header":request_header})
     return json.dumps(request_header)
