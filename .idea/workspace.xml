@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e0b5c16-8a80-4560-8061-db29ce61a4d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FlaskTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FlaskTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskApp/blueprints/get_ip.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/blueprints/get_ip.py" afterDir="false" />
     </list>
@@ -223,6 +221,7 @@
       <workItem from="1571237933555" duration="2068000" />
       <workItem from="1578494444019" duration="433000" />
       <workItem from="1602293890737" duration="547000" />
+      <workItem from="1602294713735" duration="227000" />
     </task>
     <task id="LOCAL-00001" summary="update form stringfield to better  fileds">
       <created>1557496335180</created>

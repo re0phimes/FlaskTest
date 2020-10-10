@@ -22,5 +22,6 @@ def get_ip():
 def get_process_status():
     ip = request.remote_addr
     request_header = request.headers
-    mycol.insert_one({"ip":ip,"request_header":request_header})
-    return json.dumps(request_header)
+    data = {"ip":ip,"request_header":request_header}
+    mycol.insert_one(data)
+    return data
