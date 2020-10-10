@@ -5,6 +5,8 @@ import pandas as pd
 # from models import User, ceshi, memory #
 import os
 from pymongo import MongoClient
+from datetime import datetime
+
 
 
 # content = pd.read_csv("static/aaa.csv", index_col=0)
@@ -24,11 +26,12 @@ mycol = mydb['requests_recored']
 def index():
     ip = request.remote_addr
     request_header = request.headers
+    timestamp = datetime.now().strf("%Y-%m-%d %H:%M:%S")
     request_list = []
     for x in request_header.values():
         # print(x)
         request_list.append(x)
-    data = {"ip":ip,"request_header":request_list}
+    data = {"ip":ip, "datetime":timestamp, '"request_header":request_list}
     res = mycol.insert_one(data)
     return render_template('memoviews/index2.html', ip=ip, request_header=request_header)
 

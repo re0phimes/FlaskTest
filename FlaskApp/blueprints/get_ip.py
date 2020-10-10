@@ -1,6 +1,7 @@
 from flask import Blueprint,render_template, request
 import json
 from pymongo import MongoClient
+from datetime import datetime
 
 
 # setup db
@@ -15,11 +16,12 @@ getip_bp = Blueprint('get_ip', __name__)
 def get_ip():
     ip = request.remote_addr
     request_header = request.headers
+    timestamp = datetime.now().strf("%Y-%m-%d %H:%M:%S")
     request_list = []
     for x in request_header.values():
         # print(x)
         request_list.append(x)
-    data = {"ip":ip,"request_header":request_list}
+    data = {"ip":ip, 'datetime':timestamp, "request_header":request_list}
     res = mycol.insert_one(data)
     return render_template('get_ip.html', ip=ip, request_header=request_header)
 
