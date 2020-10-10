@@ -15,6 +15,8 @@ getip_bp = Blueprint('get_ip', __name__)
 def get_ip():
     ip = request.remote_addr
     request_header = request.headers
+    data = {"ip":ip,"request_header":request_header}
+    mycol.insert_one(data)
     return render_template('get_ip.html', ip=ip, request_header=request_header)
 
 
