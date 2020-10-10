@@ -4,6 +4,7 @@ import pandas as pd
 # from extensions import db
 # from models import User, ceshi, memory #
 import os
+from pymongo import MongoClient
 
 
 # content = pd.read_csv("static/aaa.csv", index_col=0)
@@ -12,7 +13,10 @@ import os
 # #     print(header)
 # count = content.count()[0]
 memoview_bp = Blueprint('memo',__name__)
-
+myclient = MongoClient('180.76.153.244', 27890)
+myclient.admin.authenticate('beihai','yaoduoxiang')
+mydb = myclient['proxy_test']
+mycol = mydb['requests_recored']
 
 
 
@@ -20,6 +24,11 @@ memoview_bp = Blueprint('memo',__name__)
 def index():
     ip = request.remote_addr
     request_header = request.headers
+    for x in request_header.values():
+        # print(x)
+        request_list.append(x)
+    data = {"ip":ip,"request_header":request_list}
+    res = mycol.insert_one(data)
     return render_template('memoviews/index2.html', ip=ip, request_header=request_header)
 
 
