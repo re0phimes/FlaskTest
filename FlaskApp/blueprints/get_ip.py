@@ -16,7 +16,7 @@ getip_bp = Blueprint('get_ip', __name__)
 def get_ip():
     ip = request.remote_addr
     request_header = request.headers
-    timestamp = datetime.now().strf("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     request_list = []
     for x in request_header.values():
         # print(x)
