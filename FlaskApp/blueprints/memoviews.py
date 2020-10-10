@@ -31,7 +31,7 @@ def index():
     for x in request_header.values():
         # print(x)
         request_list.append(x)
-    data = {"ip":ip, "datetime":timestamp, '"request_header":request_list}
+    data = {"ip":ip, "datetime":timestamp, "request_header":request_list}
     res = mycol.insert_one(data)
     return render_template('memoviews/index2.html', ip=ip, request_header=request_header)
 
