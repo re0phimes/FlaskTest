@@ -15,8 +15,12 @@ getip_bp = Blueprint('get_ip', __name__)
 def get_ip():
     ip = request.remote_addr
     request_header = request.headers
-    data = {"ip":ip,"request_header":request_header}
-    mycol.insert_one(data)
+    request_list = []
+    for x in request_header.values():
+        # print(x)
+        request_list.append(x)
+    data = {"ip":ip,"request_header":request_list}
+    res = mycol.insert_one(data)
     return render_template('get_ip.html', ip=ip, request_header=request_header)
 
 
@@ -24,6 +28,10 @@ def get_ip():
 def get_process_status():
     ip = request.remote_addr
     request_header = request.headers
-    data = {"ip":ip,"request_header":request_header}
-    mycol.insert_one(data)
-    return data
+    request_list = []
+    for x in request_header.values():
+        # print(x)
+        request_list.append(x)
+    data = {"ip":ip,"request_header":request_list}
+    res = mycol.insert_one(data)
+    return ip
