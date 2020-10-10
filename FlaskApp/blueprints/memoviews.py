@@ -24,6 +24,7 @@ mycol = mydb['requests_recored']
 def index():
     ip = request.remote_addr
     request_header = request.headers
+    request_list = []
     for x in request_header.values():
         # print(x)
         request_list.append(x)

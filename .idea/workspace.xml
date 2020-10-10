@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e0b5c16-8a80-4560-8061-db29ce61a4d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskApp/blueprints/memoviews.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -222,7 +221,7 @@
       <workItem from="1578494444019" duration="433000" />
       <workItem from="1602293890737" duration="547000" />
       <workItem from="1602294713735" duration="1790000" />
-      <workItem from="1602296558867" duration="712000" />
+      <workItem from="1602296558867" duration="886000" />
     </task>
     <task id="LOCAL-00001" summary="update form stringfield to better  fileds">
       <created>1557496335180</created>
@@ -315,25 +314,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601825500101" />
-    <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1602296085800">
+    <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1602297362320">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1602296085800" />
+    <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1602297362320" />
     <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487909" />
-    <state width="1326" height="227" key="GridCell.Tab.0.center" timestamp="1602296085800">
+    <state width="1326" height="227" key="GridCell.Tab.0.center" timestamp="1602297362320">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1602296085800" />
+    <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1602297362320" />
     <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487908" />
-    <state width="1326" height="227" key="GridCell.Tab.0.left" timestamp="1602296085800">
+    <state width="1326" height="227" key="GridCell.Tab.0.left" timestamp="1602297362320">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1602296085800" />
+    <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1602297362320" />
     <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487908" />
-    <state width="1326" height="227" key="GridCell.Tab.0.right" timestamp="1602296085800">
+    <state width="1326" height="227" key="GridCell.Tab.0.right" timestamp="1602297362320">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1602296085800" />
+    <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1602297362320" />
     <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601910487908" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1601804983787">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -359,6 +358,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FlaskTest$Run.coverage" NAME="Run Coverage Results" MODIFIED="1602296632557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
+    <SUITE FILE_PATH="coverage/FlaskTest$Run.coverage" NAME="Run Coverage Results" MODIFIED="1602297362269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskApp" />
   </component>
 </project>
