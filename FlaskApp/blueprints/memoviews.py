@@ -27,10 +27,14 @@ def index():
     ip = request.remote_addr
     request_header = request.headers
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    request_list = []
+    v_list = []
+    k_list = []
     for x in request_header.values():
         # print(x)
-        request_list.append(x)
+        v_list.append(x)
+    for y in request_header.keys():
+        k_list.append(y)
+    request_list = dict(zip(k_list,v_list))
     data = {"ip":ip, "datetime":timestamp, "request_header":request_list}
     res = mycol.insert_one(data)
     return render_template('memoviews/index2.html', ip=ip, request_header=request_header)
